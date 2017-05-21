@@ -1,0 +1,12 @@
+{
+  "name": "pfp-api",
+  "version": "1.0.0",
+  "description": "The api gateway used for retrieving pro-football-precognition resources",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Sean Costello <me@seancostello.io>",
+  "license": "ISC"
+}
