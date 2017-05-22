@@ -1,12 +1,28 @@
+import {CALL_API} from 'middleware/api';
+
 // ------------------------------------
 // Constants
 // ------------------------------------
+export const FETCH_REQUEST = 'FETCH_REQUEST';
+export const FETCH_SUCCESS = 'FETCH_SUCCESS';
+export const FETCH_FAILURE = 'FETCH_FAILURE';
+
 export const COUNTER_INCREMENT = 'COUNTER_INCREMENT';
 export const COUNTER_DOUBLE_ASYNC = 'COUNTER_DOUBLE_ASYNC';
 
 // ------------------------------------
 // Actions
 // ------------------------------------
+export function fetchPlayers(query) {
+    return {
+        [CALL_API]: {
+            endpoint: 'players',
+            query,
+            types: [FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAILURE],
+        }
+    };
+}
+
 export function increment (value = 1) {
     return {
         type    : COUNTER_INCREMENT,
@@ -42,7 +58,11 @@ export const actions = {
 // ------------------------------------
 const ACTION_HANDLERS = {
     [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
-    [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2
+    [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2,
+    [FETCH_SUCCESS]        : (state, action) => {
+        debugger;
+        return state;
+    },
 };
 
 // ------------------------------------

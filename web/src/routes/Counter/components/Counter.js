@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Counter = ({ counter, increment, doubleAsync }) => (
+export const Counter = ({ counter, increment, fetchPlayers }) => (
     <div style={{ margin: '0 auto' }} >
         <h2>Counter: {counter}</h2>
         <button className='btn btn-primary' onClick={increment}>
             Increment
         </button>
         {' '}
-        <button className='btn btn-secondary' onClick={doubleAsync}>
+        <button className='btn btn-secondary' onClick={fetchPlayers}>
             Double (Async)
         </button>
     </div>
