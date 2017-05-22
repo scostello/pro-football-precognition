@@ -4,13 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "node $NODE_DEBUG_OPTION index.js build",
+    "provision": "node $NODE_DEBUG_OPTION index.js install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sean Costello <me@seancostello.io>",
   "license": "ISC",
   "dependencies": {
     "@google/maps": "^0.3.1",
+    "bluebird": "^3.5.0",
+    "commander": "^2.9.0",
+    "lodash": "^4.17.4",
+    "massive": "^2.6.1",
+    "mkdirp": "^0.5.1",
     "ramda": "^0.23.0",
     "ramda-fantasy": "^0.8.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.4.1"
   }
 }

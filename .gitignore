@@ -1,2 +1,4 @@
+.tfenvvars
 .idea/
 node_modules/
+build/
