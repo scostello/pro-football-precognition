@@ -1,18 +1,29 @@
 import React from 'react';
 import { IndexLink, Link } from 'react-router';
 import PropTypes from 'prop-types';
-import './PageLayout.scss';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import createPalette from 'material-ui/styles/palette';
+import { grey, blue, red } from 'material-ui/styles/colors';
+import SideMenu from './SideMenu'
+
+const theme = createMuiTheme({
+    palette: createPalette({
+        primary: grey, // Purple and green play nicely together.
+        accent: {
+            ...blue,
+            A400: '#00e677',
+        },
+        error: red,
+    }),
+});
 
 export const PageLayout = ({ children }) => (
-    <div className='container text-center'>
-        <h1>React Redux Starter Kit</h1>
-        <IndexLink to='/' activeClassName='page-layout__nav-item--active'>Home</IndexLink>
-        {' · '}
-        <Link to='/counter' activeClassName='page-layout__nav-item--active'>Counter</Link>
-        <div className='page-layout__viewport'>
+    <MuiThemeProvider theme={theme}>
+        <div style={{height: '100%'}}>
+            <SideMenu/>
             {children}
         </div>
-    </div>
+    </MuiThemeProvider>
 );
 
 PageLayout.propTypes = {
