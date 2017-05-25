@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
 import { grey, blue, red } from 'material-ui/styles/colors';
-import SideMenu from './SideMenu'
+import SideMenu from './SideMenu';
+import Page from './Page';
+import PagerHeader from './PageHeader';
 
 const theme = createMuiTheme({
     palette: createPalette({
-        primary: grey, // Purple and green play nicely together.
+        primary: grey,
         accent: {
             ...blue,
             A400: '#00e677',
@@ -21,7 +23,10 @@ export const PageLayout = ({ children }) => (
     <MuiThemeProvider theme={theme}>
         <div style={{height: '100%'}}>
             <SideMenu/>
-            {children}
+            <Page>
+                <PagerHeader/>
+                {children}
+            </Page>
         </div>
     </MuiThemeProvider>
 );

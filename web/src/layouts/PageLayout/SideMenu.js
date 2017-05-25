@@ -10,10 +10,11 @@ const styleSheet = createStyleSheet('SideMenu', (theme) => ({
         zIndex: 1,
         width: '250px',
         height: '100%',
-        backgroundColor: theme.palette.primary[200],
+        backgroundColor: '#3f4652',
         padding: '20px',
         [theme.breakpoints.down('sm')]: {
             width: '0px',
+            padding: '0px'
         },
     }
 }));
