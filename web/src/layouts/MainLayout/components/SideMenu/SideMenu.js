@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
+import {Link} from 'react-router';
+import { MenuList, MenuItem } from 'material-ui/Menu';
 
 const styleSheet = createStyleSheet('SideMenu', (theme) => ({
     root: {
@@ -11,7 +13,6 @@ const styleSheet = createStyleSheet('SideMenu', (theme) => ({
         width: '250px',
         height: '100%',
         backgroundColor: '#3f4652',
-        padding: '20px',
         [theme.breakpoints.down('sm')]: {
             width: '0px',
             padding: '0px'
@@ -19,10 +20,12 @@ const styleSheet = createStyleSheet('SideMenu', (theme) => ({
     }
 }));
 
-const SideMenu = ({classes}) => {
+const SideMenu = ({classes, navItems}) => {
     return (
         <div className={classes.root}>
-
+            <MenuList>
+                {navItems.map((navItem, idx) => <Link to={navItem.path}><MenuItem>{navItem.display}</MenuItem></Link>)}
+            </MenuList>
         </div>
     );
 };

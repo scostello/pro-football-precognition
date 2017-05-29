@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
 import { grey, blue, red } from 'material-ui/styles/colors';
-import SideMenu from './SideMenu';
+import SideMenu from './SideMenu/SideMenu';
 import Page from './Page';
 import PagerHeader from './PageHeader';
 
@@ -19,10 +19,10 @@ const theme = createMuiTheme({
     }),
 });
 
-export const PageLayout = ({ children }) => (
+export const PageLayout = ({ children, navItems }) => (
     <MuiThemeProvider theme={theme}>
         <div style={{height: '100%'}}>
-            <SideMenu/>
+            <SideMenu navItems={navItems}/>
             <Page>
                 <PagerHeader/>
                 {children}

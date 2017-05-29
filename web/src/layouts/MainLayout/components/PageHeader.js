@@ -10,10 +10,6 @@ const styleSheet = createStyleSheet('PageHeader', (theme) => ({
         position: 'relative',
         height: '300px',
         background: 'linear-gradient(120deg,#00c4cc 25%,#6e4593 85%)',
-        [theme.breakpoints.down('sm')]: {
-            width: '0px',
-            padding: '0px'
-        }
     }
 }));
 
