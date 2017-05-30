@@ -21,25 +21,25 @@ const initialState = {
             name: 'league',
             display: 'League',
             icon: 'league',
-            path: '/'
+            path: '/league',
         },
         {
             name: 'teams',
             display: 'Teams',
             icon: 'teams',
-            path: '/teams'
+            path: '/teams',
         },
         {
             name: 'players',
             display: 'Players',
             icon: 'players',
-            path: '/players'
+            path: '/players',
         },
         {
             name: 'predictions',
             display: 'Predictions',
             icon: 'prediction',
-            path: '/predictions'
+            path: '/predictions',
         },
     ]
 };

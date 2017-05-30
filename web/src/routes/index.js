@@ -1,7 +1,10 @@
 // We only need to import the modules necessary for initial render
 import MainLayout from 'layouts/MainLayout'
 import Dashboard from './Dashboard'
-import CounterRoute from './Counter'
+import LeagueRoute from './League'
+import TeamsRoute from './Teams'
+import PlayersRoute from './Players'
+import PredictionsRoute from './Predictions'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -10,7 +13,10 @@ export const createRoutes = (store) => Object.assign({}, MainLayout(store), {
     path        : '/',
     indexRoute  : Dashboard,
     childRoutes : [
-        CounterRoute(store)
+        LeagueRoute(store),
+        TeamsRoute(store),
+        PlayersRoute(store),
+        PredictionsRoute(store),
     ]
 });
 

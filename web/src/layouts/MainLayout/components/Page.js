@@ -5,7 +5,7 @@ const styleSheet = createStyleSheet('Page', (theme) => ({
     root: {
         marginLeft: '250px',
         [theme.breakpoints.down('sm')]: {
-            marginLeft: '0px',
+            marginLeft: '50px',
         },
     }
 }));

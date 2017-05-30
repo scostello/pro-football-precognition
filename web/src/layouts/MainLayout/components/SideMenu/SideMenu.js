@@ -14,9 +14,16 @@ const styleSheet = createStyleSheet('SideMenu', (theme) => ({
         height: '100%',
         backgroundColor: '#3f4652',
         [theme.breakpoints.down('sm')]: {
-            width: '0px',
-            padding: '0px'
+            width: '50px',
         },
+    },
+    link: {
+        '&:hover': {
+            textDecoration: 'none',
+        },
+    },
+    menuItem: {
+        color: '#fff',
     }
 }));
 
@@ -24,7 +31,7 @@ const SideMenu = ({classes, navItems}) => {
     return (
         <div className={classes.root}>
             <MenuList>
-                {navItems.map((navItem, idx) => <Link to={navItem.path}><MenuItem>{navItem.display}</MenuItem></Link>)}
+                {navItems.map((navItem, idx) => <Link key={idx} to={navItem.path} className={classes.link}><MenuItem className={classes.menuItem}>{navItem.display}</MenuItem></Link>)}
             </MenuList>
         </div>
     );
