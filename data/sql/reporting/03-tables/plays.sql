@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS plays (
-	play_id integer,
 	game_id integer,
+	play_id integer,
 	team_on_offense varchar(3),
 	team_on_defense varchar(3),
 	play_type varchar(10),
