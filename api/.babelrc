@@ -1,0 +1,24 @@
+{
+  "presets": [
+    "flow",
+    ["env", {
+      "targets": {
+        "node": "current"
+      }
+    }]
+  ],
+  "plugins": [
+    "babel-plugin-dynamic-import-node",
+    "babel-plugin-transform-es2015-destructuring",
+    "babel-plugin-transform-class-properties",
+    ["babel-plugin-transform-object-rest-spread", {
+        "useBuiltIns": true
+      }
+    ],
+    ["babel-plugin-transform-runtime", {
+      "helpers": false,
+      "polyfill": false,
+      "regenerator": true
+    }]
+  ]
+}

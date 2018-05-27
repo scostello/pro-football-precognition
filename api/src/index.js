@@ -1,22 +1,24 @@
-const router = require('express').Router();
-const api = require('./api');
-const db = require('./db');
+/* eslint-disable no-console */
+import logger from 'winston';
+import configureApp from './app';
 
-const dbConfig = {
-    user              : 'precog',              // env var: PGUSER
-    database          : 'pro_football_precog', // env var: PGDATABASE
-    password          : '<redacted>',          // env var: PGPASSWORD
-    host              : 'localhost',           // Server hosting the postgres database
-    port              : 5432,                  // env var: PGPORT
-    max               : 10,                    // max number of clients in the pool
-    idleTimeoutMillis : 30000,
+const init = async (getConfig) => {
+
+    const env = process.env.NODE_ENV || 'local';
+    const config = await getConfig(env);
+
+    const app = configureApp(config);
+    const port = app.get('port');
+    const server = app.listen(port);
+
+    process.on('unhandledRejection', (reason, p) =>
+        logger.error('Unhandled Rejection at: Promise ', p, reason)
+    );
+
+    server.on('listening', () =>
+        logger.info('Application started on http://%s:%d.', app.get('host'), port)
+    );
 };
 
-module.exports = (app) => {
-
-    db.createPool(dbConfig);
-    api.registerRoutes(app);
-
-    app.use('/v1', router);
-
-};
+// Go!
+init(require('./config'));
