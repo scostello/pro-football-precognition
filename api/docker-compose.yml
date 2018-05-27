@@ -1,0 +1,30 @@
+version: '3'
+services:
+
+  pfa-api:
+    build:
+      context: .
+    command: ["yarn", "run", "inspect"]
+    environment:
+      NODE_ENV: "local"
+      SUPPRESS_NO_CONFIG_WARNING: "true"
+    volumes:
+      - ./src:/apps/pfa-api/src
+    depends_on:
+      - postgres
+    ports:
+      - "3030:3030"
+      - "5858:5858"
+
+  postgres:
+    image: postgres:10.3-alpine
+    environment:
+      POSTGRES_USER: pfa_master
+      POSTGRES_DB: pro_football_analytics
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+
+volumes:
+  pg-data:
