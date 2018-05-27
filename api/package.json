@@ -1,5 +1,5 @@
 {
-  "name": "pfp-api",
+  "name": "pfa-api",
   "version": "1.0.0",
   "description": "The api gateway used for retrieving pro-football-precognition resources",
   "main": "server.js",

@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS tackles (
-	uuid integer,
-	play_id integer,
-	tackler varchar(7),
-	value numeric
+	uuid    bigint PRIMARY KEY DEFAULT id_generator() NOT NULL,,
+	id_play bigint,
+	tackler bigint,
+	value   numeric
 );

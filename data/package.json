@@ -1,24 +1,29 @@
 {
-  "name": "pfp-data",
+  "name": "pfa-data",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "node $NODE_DEBUG_OPTION index.js build",
-    "provision": "node $NODE_DEBUG_OPTION index.js install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "generate": "node index.js generate",
+    "provision": "node index.js provision",
+    "test": "mocha $NODE_DEBUG_OPTION \"test/**/*.spec.js\""
   },
   "author": "Sean Costello <me@seancostello.io>",
   "license": "ISC",
   "dependencies": {
     "@google/maps": "^0.3.1",
+    "axios": "^0.16.2",
     "bluebird": "^3.5.0",
-    "commander": "^2.9.0",
-    "lodash": "^4.17.4",
+    "commander": "^2.11.0",
+    "dotenv": "^4.0.0",
     "massive": "^2.6.1",
     "mkdirp": "^0.5.1",
+    "node-horseman": "^3.3.0",
+    "pg": "^6.3.0",
+    "phantomjs-prebuilt": "^2.1.14",
     "ramda": "^0.23.0",
-    "ramda-fantasy": "^0.8.0"
+    "ramda-fantasy": "^0.8.0",
+    "robotto": "^1.0.16"
   },
   "devDependencies": {
     "chai": "^3.5.0",

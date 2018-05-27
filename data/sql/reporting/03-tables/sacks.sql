@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS sacks (
-	uuid integer,
-	play_id integer,
-	quarter_back varchar(7),
-	sacking_player varchar(7),
-	value numeric(2,1),
-	yards_lost integer
+	uuid            bigint PRIMARY KEY NOT NULL DEFAULT id_generator(),
+	id_play         bigint,
+	quarter_back    bigint,
+	sacking_player  bigint,
+	value           numeric,
+	yards_lost      integer
 );

@@ -1,3 +1,4 @@
+.env
 .tfenvvars
 .idea/
 node_modules/

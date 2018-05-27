@@ -12,7 +12,7 @@ googleMapsClient.places({
     }
 
     const m = Maybe(response)
-        .map(R.path(['json', 'results']))
+        .map(R.path(['json', 'results']));
 
     //console.log(m.getOrElse([]));
     if (m.getOrElse([]).length === 1) {

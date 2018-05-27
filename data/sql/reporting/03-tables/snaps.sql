@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS snaps (
-	uuid integer,
-	game_id integer,
-	team varchar,
-	player varchar(7),
-	position varchar,
-	snaps integer
+	uuid        bigint PRIMARY KEY NOT NULL DEFAULT id_generator(),
+	id_game     bigint,
+	team        varchar,
+	player      bigint,
+	position    varchar,
+	snaps       integer
 );
