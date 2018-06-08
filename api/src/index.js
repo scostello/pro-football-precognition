@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import logger from 'winston';
 import configureApp from './app';
+import getConfig from './config';
 
 const init = async (getConfig) => {
 
@@ -21,4 +22,4 @@ const init = async (getConfig) => {
 };
 
 // Go!
-init(require('./config'));
+init(getConfig);

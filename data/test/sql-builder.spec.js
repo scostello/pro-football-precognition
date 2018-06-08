@@ -1,5 +1,5 @@
-const expect = require('chai').expect;
-const builder = require('../lib/sql-builder');
+import { expect } from 'chai';
+import builder from '../lib/sql-builder';
 
 describe('SQL Builder', () => {
     let db = null;

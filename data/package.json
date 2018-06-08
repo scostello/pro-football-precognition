@@ -7,7 +7,7 @@
     "generate": "node index.js generate",
     "provision": "node index.js provision",
     "job:geolocate": "babel-node jobs/geolocator.js",
-    "test": "mocha $NODE_DEBUG_OPTION \"test/**/*.spec.js\""
+    "test": "nyc mocha $NODE_DEBUG_OPTION --require babel-core/register test/**/*.spec.js --recursive --exit"
   },
   "author": "Sean Costello <me@seancostello.io>",
   "license": "ISC",
@@ -30,8 +30,10 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-flow": "^6.23.0",
+    "chai": "^4.1.2",
     "eslint": "^4.19.1",
     "flow-bin": "^0.73.0",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "nyc": "^11.8.0"
   }
 }

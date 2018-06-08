@@ -1,4 +1,4 @@
-const program = require('commander');
+import program from 'commander';
 const {generate, provision} = require('./lib/sql-builder');
 
 program

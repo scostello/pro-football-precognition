@@ -25,6 +25,7 @@
     "graphql-tools": "^3.0.2",
     "helmet": "^3.12.1",
     "pg": "^7.4.3",
+    "sanctuary": "^0.14.1",
     "winston": "^2.4.2"
   },
   "devDependencies": {
