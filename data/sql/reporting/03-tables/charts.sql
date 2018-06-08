@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS charts (
-	play_id integer,
-	number_of_runningbacks integer,
-	number_of_tightends integer,
-	dropped_pass smallint,
-	broken_tackle smallint,
-	yards_after_catch integer
+	id_play                 bigint,
+	number_of_runningbacks  int,
+	number_of_tightends     int,
+	dropped_pass            int,
+	broken_tackle           int,
+	yards_after_catch       int
 );

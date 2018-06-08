@@ -1,11 +1,11 @@
 CREATE TABLE IF NOT EXISTS touchdowns (
-	play_id integer,
-	quarter smallint,
-	minutes smallint,
-	seconds smallint,
-	down smallint,
-	yards smallint,
-	points smallint,
-	scoring_player varchar(7),
-	type varchar(4)
+	id_play         bigint,
+	scoring_player  bigint,
+	quarter         smallint,
+	minutes         smallint,
+	seconds         smallint,
+	down            smallint,
+	yards           smallint,
+	points          smallint,
+	type            varchar(4)
 );

@@ -1,25 +1,14 @@
-const program  = require('commander');
-const builder  = require('./lib/builder');
+import program from 'commander';
+const {generate, provision} = require('./lib/sql-builder');
 
 program
-    .command('build [schemas...]')
-    .description('Build the SQL files for our project')
-    .action((schemas) => {
-        console.info('Building...');
-        Promise.all(builder.generateSql(schemas))
-            .then(() => console.log('Finished!'))
-            .catch((err) => console.error(err));
-
-    });
+    .command('generate')
+    .description('Build the SQL files for our project.')
+    .action(generate);
 
 program
-    .command('install [schemas...]')
-    .description('Build and execute the SQL files for our project')
-    .action((schemas) => {
-        console.info('Installing...');
-        builder.install(schemas)
-            .then(() => console.log('Finished!'))
-            .catch((err) => console.error(err));
-    });
+    .command('provision')
+    .description('Provision a database for our project.')
+    .action(provision);
 
 program.parse(process.argv);

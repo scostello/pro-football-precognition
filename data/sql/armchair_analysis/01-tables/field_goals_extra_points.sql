@@ -5,3 +5,6 @@ CREATE TABLE IF NOT EXISTS field_goals_extra_points (
 	distance smallint,
 	was_made smallint
 );
+
+COPY field_goals_extra_points
+FROM '/Users/sean.costello/Development/nfl_00-16/FGXP.csv' DELIMITER ',' CSV HEADER;

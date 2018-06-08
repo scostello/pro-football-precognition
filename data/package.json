@@ -4,24 +4,36 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "node $NODE_DEBUG_OPTION index.js build",
-    "provision": "node $NODE_DEBUG_OPTION index.js install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "generate": "node index.js generate",
+    "provision": "node index.js provision",
+    "job:geolocate": "babel-node jobs/geolocator.js",
+    "test": "nyc mocha $NODE_DEBUG_OPTION --require babel-core/register test/**/*.spec.js --recursive --exit"
   },
   "author": "Sean Costello <me@seancostello.io>",
   "license": "ISC",
   "dependencies": {
-    "@google/maps": "^0.3.1",
-    "bluebird": "^3.5.0",
-    "commander": "^2.9.0",
-    "lodash": "^4.17.4",
-    "massive": "^2.6.1",
+    "@google/maps": "^0.4.6",
+    "commander": "^2.15.1",
+    "dotenv": "^4.0.0",
+    "massive": "^4.8.3",
     "mkdirp": "^0.5.1",
-    "ramda": "^0.23.0",
-    "ramda-fantasy": "^0.8.0"
+    "pg": "^7.4.3",
+    "sanctuary": "^0.14.1"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.4.1"
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-dynamic-import-node": "^1.2.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-destructuring": "^6.23.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-flow": "^6.23.0",
+    "chai": "^4.1.2",
+    "eslint": "^4.19.1",
+    "flow-bin": "^0.73.0",
+    "mocha": "^5.2.0",
+    "nyc": "^11.8.0"
   }
 }

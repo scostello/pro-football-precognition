@@ -1,6 +1,7 @@
-const R = require('ramda');
-const Maybe = require('ramda-fantasy').Maybe;
-const googleMapsClient = require('@google/maps').createClient({
+import S from 'sanctuary';
+import { createClient } from '@google/maps';
+
+const googleMapsClient = createClient({
     key: process.env.GOOGLE_MAPS_API_KEY
 });
 
@@ -11,11 +12,7 @@ googleMapsClient.places({
         console.error('Something went wrong!');
     }
 
-    const m = Maybe(response)
-        .map(R.path(['json', 'results']))
+    const results = S.props(['json', 'results'], response);
 
-    //console.log(m.getOrElse([]));
-    if (m.getOrElse([]).length === 1) {
-        console.log(m.getOrElse([])[0])
-    }
+    console.log(S.map(S.props(['geometry', 'location']), results));
 });
