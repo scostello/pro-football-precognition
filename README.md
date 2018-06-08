@@ -1,1 +1,1 @@
-# pro-football-precognition
+# pro-football-analytics
