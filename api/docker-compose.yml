@@ -17,7 +17,7 @@ services:
       - "5858:5858"
 
   postgres:
-    image: postgres:10.3-alpine
+    image: postgres:10.4-alpine
     environment:
       POSTGRES_USER: pfa_master
       POSTGRES_DB: pro_football_analytics

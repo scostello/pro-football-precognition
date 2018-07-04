@@ -10,14 +10,11 @@ const init = async (getConfig) => {
 
     const app = configureApp(config);
     const port = app.get('port');
-    const server = app.listen(port);
+    const host = app.get('host');
+    app.listen(port, host, () => logger.info('Application started on http://%s:%d.', app.get('host'), port));
 
     process.on('unhandledRejection', (reason, p) =>
         logger.error('Unhandled Rejection at: Promise ', p, reason)
-    );
-
-    server.on('listening', () =>
-        logger.info('Application started on http://%s:%d.', app.get('host'), port)
     );
 };
 

@@ -1,4 +1,4 @@
-FROM node:10.2.1-alpine
+FROM node:10.5.0-alpine
 
 ENV APPS_DIR=/apps
 ENV APP_NAME=pfa-api
@@ -14,6 +14,6 @@ RUN yarn install --quiet
 COPY src ./src
 COPY .babelrc .
 
-EXPOSE 3030 5858
+EXPOSE 3031 5858
 
 CMD ["yarn", "start"]

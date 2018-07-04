@@ -6,8 +6,21 @@ import logger from 'winston';
 import errorHandler from 'errorhandler';
 import express from 'express';
 
+import { knex } from './connectors';
+import api from './api';
+
+const enhance = (app) => {
+    app.configure = function configure(fn) {
+        fn.call(this, this);
+
+        return this;
+    };
+
+    return app;
+};
+
 export default (config = {}) => {
-    const app = express();
+    const app = enhance(express());
 
     // Load app configuration
     Object.keys(config).forEach(name => app.set(name, config[name]));
@@ -20,6 +33,10 @@ export default (config = {}) => {
         .use(bodyParser.json())
         .use(bodyParser.urlencoded({ extended: true }))
         .use('/health', (req, res) => res.sendStatus(200));
+
+    app
+        .configure(knex)
+        .configure(api);
 
     // Configure a middleware for 404s and the error handler
     app.use(errorHandler({ logger }));
