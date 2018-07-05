@@ -1,8 +1,14 @@
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import { typeDefs, resolvers } from './schema';
+import createModels from './models';
+
 
 export default (app) => {
+    const {
+        teams,
+    } = createModels(app);
+
     const schema = makeExecutableSchema({
         typeDefs,
         resolvers,
@@ -10,6 +16,9 @@ export default (app) => {
 
     app.use('/graphql', graphqlExpress(req => ({
         schema,
+        context: {
+            teams,
+        },
     })));
 
     app.use('/graphiql', graphiqlExpress({

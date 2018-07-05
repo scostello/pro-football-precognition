@@ -18,6 +18,8 @@ export const typeDefs = [`
 
 export const resolvers = {
     Query: {
-        teams: async () => ({}),
+        teams: async (_, { teamId }, { teams }) => {
+            return await teams.fetchAll();
+        },
     },
 };

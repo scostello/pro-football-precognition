@@ -1,1 +1,1 @@
-export { default as knex } from './knex';
+export { default as orm } from './orm';

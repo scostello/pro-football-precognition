@@ -5,7 +5,7 @@ ENV APP_NAME=pfa-api
 ENV APP_PATH=${APPS_DIR}/${APP_NAME}
 
 WORKDIR ${APP_PATH}
-RUN npm install -g nodemon yarn
+RUN npm install -g nodemon@1.17.5 yarn@1.7.0
 
 COPY package*.json ./
 
