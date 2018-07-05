@@ -1,12 +1,12 @@
 export const typeDefs = [`
     type Team {
-        id              : String
-        stadium         : String
-        nameAbbr        : String
-        nameFull        : String
-        mascot          : String
-        dateFounded     : Int
-        currentOwner    : String       
+        idTeam        : String
+        idStadium     : String
+        nameAbbr      : String
+        nameFull      : String
+        mascot        : String
+        dateFounded   : Date
+        currentOwner  : String       
     }
     
     extend type Query {
@@ -19,7 +19,12 @@ export const typeDefs = [`
 export const resolvers = {
     Query: {
         teams: async (_, { teamId }, { teams }) => {
-            return await teams.fetchAll();
+            
+            const { models } = await teams
+                .collection()
+                .fetch();
+
+            return models.map(team => team.attributes);
         },
     },
 };

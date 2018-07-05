@@ -7,6 +7,6 @@
   },
   "postgres": {
     "client": "pg",
-    "connection": "postgres://pfa_master:@postgres:5432/pro_football_analytics"
+    "connection": "postgres://pfa_master:mysupersecretpassword@postgres:5432/pro_football_analytics"
   }
 }
