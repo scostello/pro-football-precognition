@@ -14,7 +14,7 @@ export default (app) => {
         resolvers,
     });
 
-    app.use('/graphql', graphqlExpress(req => ({
+    app.use('/graphql', graphqlExpress(() => ({
         schema,
         context: {
             teams,

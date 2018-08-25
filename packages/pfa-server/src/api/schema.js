@@ -2,10 +2,12 @@ import merge from 'lodash.merge';
 import {
     GraphQLDate,
     GraphQLTime,
-    GraphQLDateTime
+    GraphQLDateTime,
 } from 'graphql-iso-date';
-import { typeDefs as teamsTypeDefs } from './teams/schema';
-import { resolvers as teamsResolvers } from './teams/schema';
+import {
+    typeDefs as teamsTypeDefs,
+    resolvers as teamsResolvers,
+} from './teams/schema';
 
 const rootTypeDefs = [`
 

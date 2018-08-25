@@ -3,8 +3,7 @@ import logger from 'winston';
 import configureApp from './app';
 import getConfig from './config';
 
-const init = async (getConfig) => {
-
+const init = async () => {
     const env = process.env.NODE_ENV || 'local';
     const config = await getConfig(env);
 
@@ -13,10 +12,9 @@ const init = async (getConfig) => {
     const host = app.get('host');
     app.listen(port, host, () => logger.info('Application started on http://%s:%d.', app.get('host'), port));
 
-    process.on('unhandledRejection', (reason, p) =>
-        logger.error('Unhandled Rejection at: Promise ', p, reason)
-    );
+    process.on('unhandledRejection', (reason, p) => logger.error('Unhandled Rejection at: Promise ', p, reason));
 };
 
 // Go!
-init(getConfig);
+init()
+    .catch(err => logger.error(err));

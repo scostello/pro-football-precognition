@@ -1,3 +1,4 @@
+build/
 .nyc_output/
 .env
 .tfenvvars

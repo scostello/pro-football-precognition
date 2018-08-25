@@ -1,1 +1,5 @@
-export { default as orm } from './orm';
+import orm from './orm';
+
+export default {
+    orm,
+};

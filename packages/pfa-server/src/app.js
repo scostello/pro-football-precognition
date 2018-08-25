@@ -6,18 +6,16 @@ import logger from 'winston';
 import errorHandler from 'errorhandler';
 import express from 'express';
 
-import { orm } from './connectors';
+import connectors from './connectors';
 import api from './api';
 
-const enhance = (app) => {
-    app.configure = function configure(fn) {
+const enhance = app => ({
+    ...app,
+    configure(fn) {
         fn.call(this, this);
-
         return this;
-    };
-
-    return app;
-};
+    },
+});
 
 export default (config = {}) => {
     const app = enhance(express());
@@ -36,7 +34,7 @@ export default (config = {}) => {
 
     // Set up Connectors and the API
     app
-        .configure(orm)
+        .configure(connectors.orm)
         .configure(api);
 
     // Configure a middleware for 404s and the error handler

@@ -1,13 +1,13 @@
 {
-  "name": "pfa-api",
+  "name": "pfa-server",
   "version": "1.0.0",
   "description": "The api gateway used for retrieving pro-football-analytics resources",
   "main": "server.js",
   "scripts": {
     "test": "NODE_PATH=src yarn run eslint && yarn run mocha",
-    "start": "NODE_PATH=src nodemon --exec babel-node src/",
-    "inspect": "NODE_PATH=src nodemon --inspect=0.0.0.0:5858 --exec babel-node src/",
-    "inspect-brk": "NODE_PATH=src nodemon --inspect-brk=0.0.0.0:5858 --exec babel-node src/",
+    "start": "NODE_PATH=src nodemon --exec 'babel-node src/'",
+    "inspect": "NODE_PATH=src nodemon --exec 'babel-node --inspect=0.0.0.0:5858 src/'",
+    "inspect-brk": "NODE_PATH=src nodemon --exec 'babel-node --inspect-brk=0.0.0.0:5858 src/'",
     "mocha": "NODE_PATH=src nyc mocha $NODE_DEBUG_OPTION --require babel-core/register {src,test}/**/*.{spec,test}.js --recursive --exit",
     "flow": "flow"
   },
@@ -44,6 +44,7 @@
     "babel-preset-flow": "^6.23.0",
     "eslint": "^5.3.0",
     "flow-bin": "0.78.0",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2"
   }
 }

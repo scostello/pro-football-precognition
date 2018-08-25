@@ -18,8 +18,7 @@ export const typeDefs = [`
 
 export const resolvers = {
     Query: {
-        teams: async (_, { teamId }, { teams }) => {
-            
+        teams: async (_, __, { teams }) => {
             const { models } = await teams
                 .collection()
                 .fetch();
