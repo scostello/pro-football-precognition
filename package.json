@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "lerna": "lerna",
-    "test": "scripts/pfa-test"
+    "test": "scripts/pfa-test",
+    "seed": "scripts/seed"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.6",

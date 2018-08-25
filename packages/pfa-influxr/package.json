@@ -4,9 +4,9 @@
   "description": "Data ingestion for Pro Football Analytics",
   "main": "index.js",
   "scripts": {
-    "build": "babel-node index.js build",
-    "provision": "babel-node index.js provision",
-    "job:geolocate": "babel-node jobs/geolocator.js",
+    "build": "babel-node src/index.js build",
+    "provision": "babel-node src/index.js provision",
+    "job:geolocate": "babel-node src/jobs/geolocator.js",
     "test": "nyc mocha $NODE_DEBUG_OPTION --require babel-core/register test/**/*.spec.js --recursive --exit"
   },
   "author": "Sean Costello <me@seancostello.io>",

@@ -18,12 +18,14 @@ services:
       - "5858:5858"
 
   postgres:
-    image: postgres:10.4-alpine
+    build:
+      context: docker-images/postgres
+      dockerfile: Dockerfile
     environment:
       POSTGRES_USER: pfa_master
-      POSTGRES_PASSWORD: mysupersecretpassword
       POSTGRES_DB: pro_football_analytics
     volumes:
+      - /tmp/nfl_00-16:/tmp/nfl_00-16
       - pg-data:/var/lib/postgresql/data
     ports:
       - "5434:5432"
