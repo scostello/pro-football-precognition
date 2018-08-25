@@ -1,5 +1,5 @@
 import program from 'commander';
-const {generate, provision} = require('./lib/sql-builder');
+const { generate, provision } = require('./src/sql-builder');
 
 program
     .command('generate')

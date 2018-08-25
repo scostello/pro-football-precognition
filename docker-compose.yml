@@ -1,15 +1,16 @@
 version: '3'
 services:
 
-  pfa-api:
+  pfa-server:
     build:
-      context: .
+      context: packages/pfa-server
+      dockerfile: Dockerfile
     command: ["yarn", "run", "inspect"]
     environment:
       NODE_ENV: "local"
       SUPPRESS_NO_CONFIG_WARNING: "true"
     volumes:
-      - ./src:/apps/pfa-api/src
+      - ./packages/pfa-server/src:/apps/pfa-server/src
     depends_on:
       - postgres
     ports:

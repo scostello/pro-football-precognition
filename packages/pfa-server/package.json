@@ -4,6 +4,7 @@
   "description": "The api gateway used for retrieving pro-football-analytics resources",
   "main": "server.js",
   "scripts": {
+    "build": "rm -rf lib/ && babel src/ -d lib/ && flow-copy-source src/ lib/",
     "test": "NODE_PATH=src yarn run eslint && yarn run mocha",
     "start": "NODE_PATH=src nodemon --exec 'babel-node src/'",
     "inspect": "NODE_PATH=src nodemon --exec 'babel-node --inspect=0.0.0.0:5858 src/'",
@@ -28,6 +29,7 @@
     "helmet": "^3.13.0",
     "knex": "^0.15.2",
     "lodash.merge": "^4.6.1",
+    "nodemon": "^1.18.3",
     "pg": "^7.4.3",
     "sanctuary": "^0.15.0",
     "winston": "^3.0.0"
@@ -44,6 +46,7 @@
     "babel-preset-flow": "^6.23.0",
     "eslint": "^5.3.0",
     "flow-bin": "0.78.0",
+    "flow-copy-source": "^2.0.2",
     "mocha": "^5.2.0",
     "nyc": "^12.0.2"
   }
