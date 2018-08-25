@@ -4,4 +4,4 @@ build/
 .tfenvvars
 .idea/
 node_modules/
-pfa-data/build/
+packages/pfa-influxr/build/

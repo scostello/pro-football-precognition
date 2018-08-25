@@ -1,6 +1,6 @@
 {
   "name": "pfa-server",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "The api gateway used for retrieving pro-football-analytics resources",
   "main": "server.js",
   "scripts": {
