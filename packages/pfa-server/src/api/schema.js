@@ -1,12 +1,12 @@
 import merge from 'lodash.merge';
 import {
-    GraphQLDate,
-    GraphQLTime,
-    GraphQLDateTime,
+  GraphQLDate,
+  GraphQLTime,
+  GraphQLDateTime,
 } from 'graphql-iso-date';
 import {
-    typeDefs as teamsTypeDefs,
-    resolvers as teamsResolvers,
+  typeDefs as teamsTypeDefs,
+  resolvers as teamsResolvers,
 } from './teams/schema';
 
 const rootTypeDefs = [`
@@ -26,19 +26,19 @@ const rootTypeDefs = [`
 `];
 
 const rootResolvers = {
-    Date: GraphQLDate,
-    Time: GraphQLTime,
-    DateTime: GraphQLDateTime,
-    Query: {},
-    Mutation: {},
+  Date: GraphQLDate,
+  Time: GraphQLTime,
+  DateTime: GraphQLDateTime,
+  Query: {},
+  Mutation: {},
 };
 
 export const typeDefs = [
-    ...rootTypeDefs,
-    ...teamsTypeDefs,
+  ...rootTypeDefs,
+  ...teamsTypeDefs,
 ];
 
 export const resolvers = merge(
-    rootResolvers,
-    teamsResolvers,
+  rootResolvers,
+  teamsResolvers,
 );

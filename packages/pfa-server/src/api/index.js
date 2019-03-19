@@ -4,23 +4,23 @@ import { typeDefs, resolvers } from './schema';
 import createModels from './models';
 
 export default (app) => {
-    const {
-        teams,
-    } = createModels(app);
+  const {
+    teams,
+  } = createModels(app);
 
-    const schema = makeExecutableSchema({
-        typeDefs,
-        resolvers,
-    });
+  const schema = makeExecutableSchema({
+    typeDefs,
+    resolvers,
+  });
 
-    app.use('/graphql', graphqlExpress(() => ({
-        schema,
-        context: {
-            teams,
-        },
-    })));
+  app.use('/graphql', graphqlExpress(() => ({
+    schema,
+    context: {
+      teams,
+    },
+  })));
 
-    app.use('/graphiql', graphiqlExpress({
-        endpointURL: '/graphql',
-    }));
+  app.use('/graphiql', graphiqlExpress({
+    endpointURL: '/graphql',
+  }));
 };

@@ -1,10 +1,10 @@
 export default (app) => {
-    const orm = app.get('orm');
-    const modelName = 'Team';
+  const orm = app.get('orm');
+  const modelName = 'Team';
 
-    orm.model(modelName, {
-        tableName: 'reporting.teams',
-    });
+  orm.model(modelName, {
+    tableName: 'reporting.teams',
+  });
 
-    return orm.model(modelName);
+  return orm.model(modelName);
 };
