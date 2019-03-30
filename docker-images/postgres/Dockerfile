@@ -1,4 +1,4 @@
-FROM postgres:10-alpine
+FROM postgres:11.1-alpine
 MAINTAINER Régis Belson <me@regisbelson.fr>
 
 ENV POSTGIS_VERSION 2.4.4
