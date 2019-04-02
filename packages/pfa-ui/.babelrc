@@ -1,0 +1,22 @@
+{
+  "plugins": [
+    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }],
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-transform-modules-commonjs"
+  ],
+  "presets": [
+    ["@babel/preset-env", { "useBuiltIns": "entry", "modules": false}],
+    "@babel/preset-react",
+    "@babel/preset-flow"
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        ["import", { "libraryName": "antd", "libraryDirectory": "lib", "style": "css" }],
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-transform-modules-commonjs"
+      ]
+    }
+  }
+}
