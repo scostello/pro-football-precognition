@@ -29,10 +29,11 @@ CREATE TABLE IF NOT EXISTS offense (
 	seasons_played              smallint,
 	year                        integer,
 	team                        varchar(3),
-	position_detail             varchar(8),
+	position_depth_chart        varchar(8),
 	jersey_number               smallint,
-	depth_chart                 smallint
+	depth_chart                 smallint,
+	nfl_player_id               varchar
 );
 
 COPY offense
-FROM '/tmp/nfl_00-16/OFFENSE.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/OFFENSE.csv' DELIMITER ',' CSV HEADER;

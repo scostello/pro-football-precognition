@@ -31,4 +31,4 @@ CREATE TABLE IF NOT EXISTS plays (
 );
 
 COPY plays
-FROM '/tmp/nfl_00-16/PLAY.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/PLAY.csv' DELIMITER ',' CSV HEADER;

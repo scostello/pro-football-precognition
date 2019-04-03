@@ -4,4 +4,4 @@ CREATE TABLE IF NOT EXISTS safeties (
 );
 
 COPY safeties
-FROM '/tmp/nfl_00-16/SAFETY.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/SAFETY.csv' DELIMITER ',' CSV HEADER;

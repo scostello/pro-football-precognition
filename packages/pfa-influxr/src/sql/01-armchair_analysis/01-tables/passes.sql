@@ -11,4 +11,4 @@ CREATE TABLE IF NOT EXISTS passes (
 );
 
 COPY passes
-FROM '/tmp/nfl_00-16/PASS.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/PASS.csv' DELIMITER ',' CSV HEADER;

@@ -14,4 +14,4 @@ CREATE TABLE IF NOT EXISTS kickers (
 );
 
 COPY kickers
-FROM '/tmp/nfl_00-16/KICKER.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/KICKER.csv' DELIMITER ',' CSV HEADER;

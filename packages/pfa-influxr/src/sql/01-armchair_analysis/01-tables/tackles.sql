@@ -6,4 +6,4 @@ CREATE TABLE IF NOT EXISTS tackles (
 );
 
 COPY tackles
-FROM '/tmp/nfl_00-16/TACKLE.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/TACKLE.csv' DELIMITER ',' CSV HEADER;

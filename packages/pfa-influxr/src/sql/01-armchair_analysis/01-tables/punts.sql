@@ -10,4 +10,4 @@ CREATE TABLE IF NOT EXISTS punts (
 );
 
 COPY punts
-FROM '/tmp/nfl_00-16/PUNT.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/PUNT.csv' DELIMITER ',' CSV HEADER;

@@ -16,5 +16,4 @@ RUN yarn install &&\
 
 EXPOSE 3030 5858
 
-ENTRYPOINT ["yarn"]
-CMD ["start"]
+CMD ["npm", "start"]

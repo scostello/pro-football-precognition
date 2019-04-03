@@ -8,4 +8,4 @@ CREATE TABLE IF NOT EXISTS rushes (
 );
 
 COPY rushes
-FROM '/tmp/nfl_00-16/RUSH.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/RUSH.csv' DELIMITER ',' CSV HEADER;

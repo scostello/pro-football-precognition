@@ -22,10 +22,11 @@ CREATE TABLE IF NOT EXISTS defense (
 	seasons_played          smallint,
 	nfl_season              integer,
 	team                    varchar(3),
-	position                varchar(8),
+	position_depth_chart    varchar(8),
 	jersey_number           smallint,
-	depth_chart             smallint
+	depth_chart             smallint,
+	nfl_player_id           varchar
 );
 
 COPY defense
-FROM '/tmp/nfl_00-16/DEFENSE.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/DEFENSE.csv' DELIMITER ',' CSV HEADER;

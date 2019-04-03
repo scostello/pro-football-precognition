@@ -8,4 +8,4 @@ CREATE TABLE IF NOT EXISTS sacks (
 );
 
 COPY sacks
-FROM '/tmp/nfl_00-16/SACK.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/SACK.csv' DELIMITER ',' CSV HEADER;

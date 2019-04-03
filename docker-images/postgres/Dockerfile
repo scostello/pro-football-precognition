@@ -1,8 +1,8 @@
 FROM postgres:11.1-alpine
 MAINTAINER Régis Belson <me@regisbelson.fr>
 
-ENV POSTGIS_VERSION 2.4.4
-ENV POSTGIS_SHA256 0dff4902556ad45430e2b85dbe7e9baa758c6eb0bfd5ff6948f478beddd56b67
+ENV POSTGIS_VERSION 2.5.2
+ENV POSTGIS_SHA256 225aeaece00a1a6a9af15526af81bef2af27f4c198de820af1367a792ee1d1a9
 
 RUN set -ex \
     \
@@ -31,12 +31,9 @@ RUN set -ex \
         make \
         perl \
     \
-    # add libcrypto from (edge:main) for gdal-2.3.0
-    && apk add --no-cache --virtual .crypto-rundeps \
-        --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
-        libressl2.7-libcrypto \
-    && apk add --no-cache --virtual .build-deps-testing \
+    && apk add --no-cache --virtual .build-deps-edge \
         --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+        --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
         gdal-dev \
         geos-dev \
         proj4-dev \
@@ -51,15 +48,16 @@ RUN set -ex \
     && make install \
     && apk add --no-cache --virtual .postgis-rundeps \
         json-c \
-    && apk add --no-cache --virtual .postgis-rundeps-testing \
+    && apk add --no-cache --virtual .postgis-rundeps-edge \
         --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+        --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
         geos \
         gdal \
         proj4 \
         protobuf-c \
     && cd / \
     && rm -rf /usr/src/postgis \
-    && apk del .fetch-deps .build-deps .build-deps-testing
+    && apk del .fetch-deps .build-deps .build-deps-edge
 
 COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/postgis.sh
 COPY ./update-postgis.sh /usr/local/bin

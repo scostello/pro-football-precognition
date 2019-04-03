@@ -8,4 +8,4 @@ CREATE TABLE IF NOT EXISTS conversions (
 );
 
 COPY conversions
-FROM '/tmp/nfl_00-16/CONV.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/CONV.csv' DELIMITER ',' CSV HEADER;

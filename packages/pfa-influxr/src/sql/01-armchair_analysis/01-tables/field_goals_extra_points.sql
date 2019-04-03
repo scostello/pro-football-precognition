@@ -7,4 +7,4 @@ CREATE TABLE IF NOT EXISTS field_goals_extra_points (
 );
 
 COPY field_goals_extra_points
-FROM '/tmp/nfl_00-16/FGXP.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/FGXP.csv' DELIMITER ',' CSV HEADER;

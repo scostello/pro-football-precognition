@@ -7,4 +7,4 @@ CREATE TABLE IF NOT EXISTS fumbles (
 );
 
 COPY fumbles
-FROM '/tmp/nfl_00-16/FUMBLE.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/FUMBLE.csv' DELIMITER ',' CSV HEADER;

@@ -11,4 +11,4 @@ CREATE TABLE IF NOT EXISTS touchdowns (
 );
 
 COPY touchdowns
-FROM '/tmp/nfl_00-16/TD.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/TD.csv' DELIMITER ',' CSV HEADER;

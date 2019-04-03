@@ -13,4 +13,4 @@ CREATE TABLE IF NOT EXISTS schedule (
 );
 
 COPY schedule
-FROM '/tmp/nfl_00-16/SCHEDULE.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/SCHEDULE.csv' DELIMITER ',' CSV HEADER;

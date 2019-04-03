@@ -1,7 +1,7 @@
 version: '3'
 services:
 
-  pfa-server:
+  pfa-api:
     build:
       context: packages/pfa-api
       dockerfile: Dockerfile
@@ -18,14 +18,12 @@ services:
       - "5858:5858"
 
   postgres:
-    build:
-      context: docker-images/postgres
-      dockerfile: Dockerfile
+    image: postgres-postgis:11.1-alpine
     environment:
       POSTGRES_USER: pfa_master
       POSTGRES_DB: pro_football_analytics
     volumes:
-      - /tmp/nfl_00-16:/tmp/nfl_00-16
+      - /tmp/nfl_00-18:/tmp/nfl_00-18
       - pg-data:/var/lib/postgresql/data
     ports:
       - "5434:5432"

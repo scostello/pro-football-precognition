@@ -14,11 +14,11 @@ CREATE TABLE IF NOT EXISTS drives (
 	rushing_first_downs     smallint,
 	passing_first_downs     smallint,
 	other_first_downs       smallint,
-	rushing_attempts        smallint,
 	rushing_yardage         integer,
+	rushing_attempts        smallint,
+    passing_yardage         integer,
 	passing_attempts        smallint,
 	passing_completions     smallint,
-	passing_yardage         integer,
 	penalty_yardage_for     smallint,
 	penalty_yardage_against smallint,
 	net_yardage             integer,
@@ -26,4 +26,4 @@ CREATE TABLE IF NOT EXISTS drives (
 );
 
 COPY drives
-FROM '/tmp/nfl_00-16/DRIVE.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/DRIVE.csv' DELIMITER ',' CSV HEADER;

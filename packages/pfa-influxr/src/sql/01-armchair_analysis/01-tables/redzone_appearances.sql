@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS redzone_appearances (
 	player                      varchar(7),
 	passing_attempts            smallint,
 	passing_completions         smallint,
-	passing_yardagey            integer,
+	passing_yardage             integer,
 	interceptions               smallint,
 	rushing_attempts            smallint,
 	successful_rushing_attempts smallint,
@@ -17,4 +17,4 @@ CREATE TABLE IF NOT EXISTS redzone_appearances (
 );
 
 COPY redzone_appearances
-FROM '/tmp/nfl_00-16/REDZONE.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/REDZONE.csv' DELIMITER ',' CSV HEADER;

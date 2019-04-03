@@ -6,4 +6,4 @@ CREATE TABLE IF NOT EXISTS interceptions (
 );
 
 COPY interceptions
-FROM '/tmp/nfl_00-16/INTERCPT.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/INTERCPT.csv' DELIMITER ',' CSV HEADER;

@@ -10,4 +10,4 @@ CREATE TABLE IF NOT EXISTS penalties (
 );
 
 COPY penalties
-FROM '/tmp/nfl_00-16/PENALTY.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/PENALTY.csv' DELIMITER ',' CSV HEADER;

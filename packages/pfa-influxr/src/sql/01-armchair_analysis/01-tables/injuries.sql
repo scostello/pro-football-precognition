@@ -1,4 +1,5 @@
 CREATE TABLE IF NOT EXISTS injuries (
+    uuid            integer,
 	game_id         integer,
 	player          varchar(7),
 	team            varchar(3),
@@ -8,4 +9,4 @@ CREATE TABLE IF NOT EXISTS injuries (
 );
 
 COPY injuries
-FROM '/tmp/nfl_00-16/INJURY.csv' DELIMITER ',' CSV HEADER;
+FROM '/tmp/nfl_00-18/INJURY.csv' DELIMITER ',' CSV HEADER;
