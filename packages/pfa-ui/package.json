@@ -45,11 +45,13 @@
     "history": "^4.9.0",
     "ramda": "^0.26.1",
     "react": "^16.8.6",
+    "react-annotation": "^2.1.6",
     "react-dom": "^16.8.6",
     "react-error-boundary": "^1.2.5",
     "react-loadable": "^5.5.0",
     "react-router": "^5.0.0",
-    "react-router-dom": "^5.0.0"
+    "react-router-dom": "^5.0.0",
+    "semiotic": "^1.19.2"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",

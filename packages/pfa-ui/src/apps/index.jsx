@@ -1,20 +1,7 @@
 // @flow
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Switch } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
-
-const history = createBrowserHistory();
-
-const Main = () => <div>{'The Primary Route'}</div>;
-
-const App = () => (
-  <Router history={history}>
-    <Switch>
-      <Route path={'/'} component={Main} />
-    </Switch>
-  </Router>
-);
+import App from './common/App';
 
 // ========================================================
 // Render Setup
