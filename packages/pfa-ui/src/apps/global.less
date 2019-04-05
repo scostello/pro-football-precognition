@@ -1,18 +1,17 @@
-.frame {
+:global(.frame) {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 0.8em;
 }
 
-.axis-baseline {
+:global(.axis-baseline) {
   stroke: #ddd;
 }
 
-.tick,
-.axis-tick path {
+:global(.tick, .axis-tick path) {
   stroke: #ddd;
 }
 
-.tooltip-content {
+:global(.tooltip-content) {
   background: #ffffff;
   position: relative;
   border: 1px solid #ddd;
@@ -23,12 +22,12 @@
   min-width: 120px;
 }
 
-.uncertainty_cone {
+:global(.uncertainty_cone) {
   transform: none;
   fill: #de4b8b;
   fill-opacity: 0.2;
 }
 
-circle.frame-hover {
+:global(circle.frame-hover) {
   stroke: #aaa;
 }

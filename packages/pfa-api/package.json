@@ -14,6 +14,18 @@
   },
   "author": "Sean Costello <me@seancostello.io>",
   "license": "ISC",
+  "watch": {
+    "restart": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "js",
+      "quiet": false,
+      "legacyWatch": true,
+      "delay": 2500,
+      "runOnChangeOnly": false
+    }
+  },
   "dependencies": {
     "apollo-server": "^2.4.8",
     "express": "^4.16.4",

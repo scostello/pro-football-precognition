@@ -5,7 +5,7 @@ services:
     build:
       context: packages/pfa-api
       dockerfile: Dockerfile
-    command: ["yarn", "run", "inspect"]
+    command: ["yarn", "run", "watch"]
     environment:
       NODE_ENV: "local"
       SUPPRESS_NO_CONFIG_WARNING: "true"
@@ -14,8 +14,7 @@ services:
     depends_on:
       - postgres
     ports:
-      - "3030:3030"
-      - "5858:5858"
+      - "4000:4000"
 
   postgres:
     image: postgres-postgis:11.1-alpine

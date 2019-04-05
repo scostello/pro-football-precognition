@@ -1,7 +1,8 @@
 // @flow
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import App from './common/App';
+import App from './App';
+import './global.less';
 
 // ========================================================
 // Render Setup
