@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS interceptions (
+CREATE TABLE IF NOT EXISTS armchair_analysis.interceptions (
 	play_id         integer,
 	passer          varchar(7),
 	interceptor     varchar(7),

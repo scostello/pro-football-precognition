@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS defense (
+CREATE TABLE IF NOT EXISTS reporting.defense (
 	uuid                    bigint PRIMARY KEY NOT NULL DEFAULT public.id_generator(),
 	id_game                 bigint,
 	player                  bigint,

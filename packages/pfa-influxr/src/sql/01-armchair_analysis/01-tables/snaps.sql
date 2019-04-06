@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS snaps (
+CREATE TABLE IF NOT EXISTS armchair_analysis.snaps (
 	uuid                 integer,
 	game_id              integer,
 	team                 varchar,

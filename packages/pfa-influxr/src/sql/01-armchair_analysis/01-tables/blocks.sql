@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS blocks (
+CREATE TABLE IF NOT EXISTS armchair_analysis.blocks (
 	play_id             integer,
 	blocker             varchar(7),
 	recovering_player   varchar(7),

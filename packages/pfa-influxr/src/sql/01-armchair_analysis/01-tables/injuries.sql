@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS injuries (
+CREATE TABLE IF NOT EXISTS armchair_analysis.injuries (
     uuid            integer,
 	game_id         integer,
 	player          varchar(7),

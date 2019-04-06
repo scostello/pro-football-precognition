@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS redzone_appearances (
+CREATE TABLE IF NOT EXISTS armchair_analysis.redzone_appearances (
 	uuid                        integer,
 	game_id                     integer,
 	player                      varchar(7),

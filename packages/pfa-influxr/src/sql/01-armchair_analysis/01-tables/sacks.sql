@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS sacks (
+CREATE TABLE IF NOT EXISTS armchair_analysis.sacks (
 	uuid            integer,
 	play_id         integer,
 	quarter_back    varchar(7),

@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS rushes (
+CREATE TABLE IF NOT EXISTS reporting.rushes (
 	id_play         bigint,
 	ball_carrier    bigint,
 	rush_direction  varchar(2),

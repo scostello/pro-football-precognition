@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS passes (
+CREATE TABLE IF NOT EXISTS reporting.passes (
 	id_play         bigint,
 	passer          bigint,
 	target          bigint,

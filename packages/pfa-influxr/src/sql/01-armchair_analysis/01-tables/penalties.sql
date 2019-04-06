@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS penalties (
+CREATE TABLE IF NOT EXISTS armchair_analysis.penalties (
 	uuid                integer,
 	play_id             integer,
 	flagged_team        varchar(3),

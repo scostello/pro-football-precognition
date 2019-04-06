@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS touchdowns (
+CREATE TABLE IF NOT EXISTS reporting.touchdowns (
 	id_play         bigint,
 	scoring_player  bigint,
 	quarter         smallint,

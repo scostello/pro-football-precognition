@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS penalties (
+CREATE TABLE IF NOT EXISTS reporting.penalties (
 	uuid                bigint PRIMARY KEY NOT NULL DEFAULT public.id_generator(),
 	id_play             bigint,
 	flagged_team        varchar(3),

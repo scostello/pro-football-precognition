@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS charts (
+CREATE TABLE IF NOT EXISTS reporting.charts (
 	id_play                 bigint,
 	number_of_runningbacks  int,
 	number_of_tightends     int,

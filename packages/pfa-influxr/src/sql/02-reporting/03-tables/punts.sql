@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS punts (
+CREATE TABLE IF NOT EXISTS reporting.punts (
 	id_play         bigint,
 	punter          bigint,
 	returner        bigint,

@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS injuries (
+CREATE TABLE IF NOT EXISTS reporting.injuries (
 	id_game         bigint,
 	player          bigint,
 	team            varchar(3),

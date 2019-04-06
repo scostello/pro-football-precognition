@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS rushes (
+CREATE TABLE IF NOT EXISTS armchair_analysis.rushes (
 	play_id         integer,
 	ball_carrier    varchar(7),
 	rush_direction  varchar(2),

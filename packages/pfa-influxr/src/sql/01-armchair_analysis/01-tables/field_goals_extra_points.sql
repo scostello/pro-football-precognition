@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS field_goals_extra_points (
+CREATE TABLE IF NOT EXISTS armchair_analysis.field_goals_extra_points (
 	play_id     integer,
 	type        varchar(2),
 	kicker      varchar(7),

@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS plays (
+CREATE TABLE IF NOT EXISTS armchair_analysis.plays (
 	game_id                 integer,
 	play_id                 integer,
 	team_on_offense         varchar(3),

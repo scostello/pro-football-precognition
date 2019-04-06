@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS touchdowns (
+CREATE TABLE IF NOT EXISTS armchair_analysis.touchdowns (
 	play_id         integer,
 	quarter         smallint,
 	minutes         smallint,

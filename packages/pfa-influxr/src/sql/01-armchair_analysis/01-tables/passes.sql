@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS passes (
+CREATE TABLE IF NOT EXISTS armchair_analysis.passes (
 	play_id         integer,
 	passer          varchar(7),
 	target          varchar(7),

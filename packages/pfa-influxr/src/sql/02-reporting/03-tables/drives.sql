@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS drives (
+CREATE TABLE IF NOT EXISTS reporting.drives (
 	uuid                    bigint PRIMARY KEY NOT NULL DEFAULT public.id_generator(),
 	id_game                 bigint,
 	id_first_play           bigint,

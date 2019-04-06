@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS redzone_appearances (
+CREATE TABLE IF NOT EXISTS reporting.redzone_appearances (
 	uuid                        bigint PRIMARY KEY NOT NULL DEFAULT public.id_generator(),
 	id_game                     bigint,
 	player                      bigint,

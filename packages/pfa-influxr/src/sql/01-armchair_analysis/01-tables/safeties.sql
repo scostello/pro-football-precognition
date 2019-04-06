@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS safeties (
+CREATE TABLE IF NOT EXISTS armchair_analysis.safeties (
 	play_id     integer,
 	defender    varchar(7)
 );

@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS kickoffs (
+CREATE TABLE IF NOT EXISTS reporting.kickoffs (
 	id_play         bigint,
 	kicker          bigint,
 	gross_yardage   smallint,

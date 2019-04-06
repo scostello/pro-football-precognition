@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS fumbles (
+CREATE TABLE IF NOT EXISTS armchair_analysis.fumbles (
 	play_id             integer,
 	fumbler             varchar(7),
 	recovering_player   varchar(7),

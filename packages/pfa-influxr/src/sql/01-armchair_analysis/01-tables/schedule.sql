@@ -1,6 +1,6 @@
 -- gid,seas,wk,day,date,v,h,stad,surf
 
-CREATE TABLE IF NOT EXISTS schedule (
+CREATE TABLE IF NOT EXISTS armchair_analysis.schedule (
     game_id     integer,
     season      integer,
     week        integer,

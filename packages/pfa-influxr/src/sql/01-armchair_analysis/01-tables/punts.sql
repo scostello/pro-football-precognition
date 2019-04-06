@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS punts (
+CREATE TABLE IF NOT EXISTS armchair_analysis.punts (
 	play_id         integer,
 	punter          varchar(7),
 	gross_yardage   smallint,

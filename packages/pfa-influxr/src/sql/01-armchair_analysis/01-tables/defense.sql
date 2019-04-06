@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS defense (
+CREATE TABLE IF NOT EXISTS armchair_analysis.defense (
 	uuid                    integer,
 	game_id                 integer,
 	player                  varchar(7),

@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS drives (
+CREATE TABLE IF NOT EXISTS armchair_analysis.drives (
 	uuid                    integer,
 	game_id                 integer,
 	first_play_id           integer,

@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS games (
+CREATE TABLE IF NOT EXISTS reporting.games (
 	id_game             bigint,
 	season              integer,
 	week                smallint,

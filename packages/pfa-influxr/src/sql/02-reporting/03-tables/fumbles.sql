@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS fumbles (
+CREATE TABLE IF NOT EXISTS reporting.fumbles (
 	id_play             bigint,
 	fumbler             bigint,
 	recovering_player   bigint,

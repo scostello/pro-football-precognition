@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS players (
+CREATE TABLE IF NOT EXISTS reporting.players (
 	id_player           bigint,
 	first_name          varchar(25),
 	last_name           varchar(25),

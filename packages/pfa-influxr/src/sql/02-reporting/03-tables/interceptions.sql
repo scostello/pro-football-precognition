@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS interceptions (
+CREATE TABLE IF NOT EXISTS reporting.interceptions (
 	id_play         bigint,
 	passer          bigint,
 	interceptor     bigint,

@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS safeties (
+CREATE TABLE IF NOT EXISTS reporting.safeties (
 	id_play     bigint,
 	defender    bigint
 );

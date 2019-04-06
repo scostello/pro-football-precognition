@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS blocks (
+CREATE TABLE IF NOT EXISTS reporting.blocks (
 	id_play             bigint,
 	blocker             bigint,
 	recovering_player   bigint

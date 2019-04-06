@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS sacks (
+CREATE TABLE IF NOT EXISTS reporting.sacks (
 	uuid            bigint PRIMARY KEY NOT NULL DEFAULT public.id_generator(),
 	id_play         bigint,
 	quarter_back    bigint,

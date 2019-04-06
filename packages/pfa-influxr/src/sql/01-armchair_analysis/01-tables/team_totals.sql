@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS team_totals (
+CREATE TABLE IF NOT EXISTS armchair_analysis.team_totals (
 	team_total_id                   numeric,
 	game_id                         numeric,
 	team_name                       varchar(3),

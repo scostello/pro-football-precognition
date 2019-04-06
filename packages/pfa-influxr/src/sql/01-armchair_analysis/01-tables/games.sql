@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS games (
+CREATE TABLE IF NOT EXISTS armchair_analysis.games (
 	game_id             integer,
 	season              integer,
 	week                smallint,

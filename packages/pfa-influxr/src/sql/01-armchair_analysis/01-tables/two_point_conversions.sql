@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS conversions (
+CREATE TABLE IF NOT EXISTS armchair_analysis.conversions (
 	play_id         integer,
 	type            varchar(4),
 	ball_carrier    varchar(7),

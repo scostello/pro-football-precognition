@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS team_totals (
+CREATE TABLE IF NOT EXISTS reporting.team_totals (
 	id_team_total                   bigint,
 	id_game                         bigint,
 	team_name                       varchar(3),
