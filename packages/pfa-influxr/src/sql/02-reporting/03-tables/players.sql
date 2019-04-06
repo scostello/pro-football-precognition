@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS reporting.players (
-	id_player           bigint,
+	id_player           bigint PRIMARY KEY NOT NULL DEFAULT public.id_generator(),
+	aa_player_id        varchar(7),
 	first_name          varchar(25),
 	last_name           varchar(25),
 	play_by_play_name   varchar(25),

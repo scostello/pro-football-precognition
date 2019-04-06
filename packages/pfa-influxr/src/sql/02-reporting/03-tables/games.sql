@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS reporting.games (
-	id_game             bigint,
+	id_game             bigint PRIMARY KEY NOT NULL DEFAULT public.id_generator(),
+	aa_game_id          int,
 	season              integer,
 	week                smallint,
 	day                 varchar(3),

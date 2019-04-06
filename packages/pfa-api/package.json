@@ -28,11 +28,16 @@
   },
   "dependencies": {
     "apollo-server": "^2.4.8",
+    "apollo-server-express": "^2.4.8",
     "express": "^4.16.4",
     "graphql": "^14.2.0",
     "graphql-iso-date": "^3.6.1",
     "graphql-tools": "^4.0.4",
-    "npm-watch": "^0.6.0"
+    "graphql-type-json": "^0.2.4",
+    "lodash.merge": "^4.6.1",
+    "massive": "^5.7.7",
+    "npm-watch": "^0.6.0",
+    "rxjs": "^6.4.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

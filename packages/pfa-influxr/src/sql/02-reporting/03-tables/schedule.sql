@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS reporting.schedule (
-    id_game     integer,
+    id_game     bigint,
     season      integer,
     week        integer,
     day         varchar(3),

@@ -8,7 +8,10 @@ services:
     command: ["yarn", "run", "watch"]
     environment:
       NODE_ENV: "local"
-      SUPPRESS_NO_CONFIG_WARNING: "true"
+      PG_HOST: "postgres"
+      PG_PORT: 5432
+      PG_DB_NAME: "pro_football_analytics"
+      PG_DB_USER: "pfa_master"
     volumes:
       - ./packages/pfa-api/src:/apps/pfa-api/src
     depends_on:

@@ -1,4 +1,5 @@
 CREATE TABLE IF NOT EXISTS reporting.injuries (
+    uuid            bigint PRIMARY KEY NOT NULL DEFAULT public.id_generator(),
 	id_game         bigint,
 	player          bigint,
 	team            varchar(3),

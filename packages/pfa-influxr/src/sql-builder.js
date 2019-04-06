@@ -8,7 +8,7 @@ config({ path: path.join(__dirname, '../.env') });
 
 const buildPath = path.join(__dirname, '../build');
 
-const sqlPath = path.join(__dirname, './sql');
+const sqlPath = path.join(__dirname, './sql/02-reporting');
 const sqlGlob = '**/*.sql';
 const sqlGlobPath = path.join(sqlPath, sqlGlob);
 

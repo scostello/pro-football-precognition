@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS reporting.team_totals (
-	id_team_total                   bigint,
+	id_team_total                   bigint PRIMARY KEY NOT NULL DEFAULT public.id_generator(),
 	id_game                         bigint,
 	team_name                       varchar(3),
 	points                          numeric,

@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS reporting.defense (
 	uuid                    bigint PRIMARY KEY NOT NULL DEFAULT public.id_generator(),
 	id_game                 bigint,
-	player                  bigint,
+	id_player               bigint,
 	solo_tackles            numeric,
 	combined_tackles        numeric,
 	sacks                   numeric,

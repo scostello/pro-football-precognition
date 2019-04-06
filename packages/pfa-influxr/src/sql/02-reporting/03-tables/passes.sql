@@ -7,6 +7,5 @@ CREATE TABLE IF NOT EXISTS reporting.passes (
 	yards           smallint,
 	completed       smallint,
 	successful_play smallint,
-	spiked_ball     smallint,
-	defender        varchar(7)
+	spiked_ball     smallint
 );
