@@ -24,5 +24,6 @@ CREATE TABLE IF NOT EXISTS reporting.defense (
 	team                    varchar(3),
 	position                varchar(8),
 	jersey_number           smallint,
-	depth_chart             smallint
+	depth_chart             smallint,
+	nfl_player_id           varchar
 );

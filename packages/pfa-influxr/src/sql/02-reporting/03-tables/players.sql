@@ -21,7 +21,8 @@ CREATE TABLE IF NOT EXISTS reporting.players (
 	college_division    varchar,
 	first_year          integer,
 	current_team        varchar,
-	position_detail     varchar,
-	jersey_number       smallint,
-	depth_chart         smallint
+	position_depth_chart varchar,
+	jersey_number        smallint,
+	depth_chart          smallint,
+	nfl_player_id        varchar
 );

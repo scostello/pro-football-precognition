@@ -29,7 +29,8 @@ CREATE TABLE IF NOT EXISTS reporting.offense (
 	seasons_played              smallint,
 	year                        integer,
 	team                        varchar(3),
-	position_detail             varchar(8),
+	position_depth_chart        varchar(8),
 	jersey_number               smallint,
-	depth_chart                 smallint
+	depth_chart                 smallint,
+	nfl_player_id               varchar
 );
