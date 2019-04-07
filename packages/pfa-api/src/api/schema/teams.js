@@ -1,5 +1,5 @@
 // @flow
-import { gql } from 'apollo-server/';
+import { gql } from 'apollo-server';
 
 const typeDefs = [gql`
   extend type Query {
@@ -9,7 +9,7 @@ const typeDefs = [gql`
 
 export const resolvers = {
   Query: {
-    teams: (_, __, { client }) => client.reporting.teams.find({}, { limit: 15 }),
+    teams: (_, __, { client }) => client.reporting.logos.find({}, { limit: 15 }),
   },
 };
 

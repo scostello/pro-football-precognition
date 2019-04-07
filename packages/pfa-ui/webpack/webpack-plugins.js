@@ -28,7 +28,7 @@ module.exports = () => {
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false,
-      reportFilename: './../bundle-report.html',
+      reportFilename: path.join(helpers.buildPath, 'bundle-report.html'),
     }),
   ];
 

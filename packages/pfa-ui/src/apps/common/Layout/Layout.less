@@ -1,0 +1,66 @@
+@gradient-background: linear-gradient(135deg, #6e65bf 10%, #00eaff 100%);
+
+@header-height: 64px;
+@header-padding-top: 15px;
+@header-padding-bottom: 15px;
+@header-padding-left: 10px;
+@header-padding-right: 10px;
+
+.header,
+.logo {
+  height: @header-height;
+  padding: @header-padding-top @header-padding-left;
+}
+
+.logo {
+  text-align: center;
+}
+
+.sider {
+  background-image: @gradient-background;
+  border-right: 1px solid #f5f5f5;
+
+  .sider-menu {
+    background: transparent;
+
+    a,
+    span {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    :global(.ant-menu-item::after) {
+      border-right: none;
+    }
+
+    :global(.ant-menu-item-selected) {
+      background: rgba(141, 130, 245, 0.45);
+      border-left: 3px solid #fff;
+
+      a,
+      span {
+        color: rgba(255, 255, 255, 1);
+        font-weight: bold;
+      }
+    }
+  }
+
+  :global(.ant-layout-sider-trigger) {
+    border-top: 1px solid #fff;
+    background: rgba(141, 130, 245, 0.35);
+    line-height: 51px;
+  }
+
+  :global(.ant-layout-sider-trigger .anticon) {
+    font-size: 18px;
+  }
+}
+
+.main-content-wrapper {
+  background: #fcfcfc;
+}
+
+.main-content {
+  background-image: @gradient-background;
+  padding: 24px;
+  min-height: 360px;
+}

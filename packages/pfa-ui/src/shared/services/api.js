@@ -27,7 +27,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
  * Setting up the primary GraphQL endpoint
  * @type {ApolloLink}
  */
-const httpLink = createHttpLink({ uri: '/graphql' });
+const httpLink = createHttpLink({ uri: `${window.location.protocol}//${apiHost}/graphql` });
 
 export const createClient = () => new ApolloClient({
   link: ApolloLink.from([errorLink, httpLink]),

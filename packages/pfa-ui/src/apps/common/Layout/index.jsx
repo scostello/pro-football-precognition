@@ -1,33 +1,55 @@
 // @flow
 import * as React from 'react';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout as AntdLayout, Menu, Icon } from 'antd';
+import {
+  withRouter, Link, Route, Switch,
+} from 'react-router-dom';
+import Header from './Header';
+import layout from './Layout.less';
 
-const {
-  Header, Content, Footer, Sider,
-} = Layout;
-const { SubMenu } = Menu;
+const { Content, Sider } = AntdLayout;
 
-export default () => {
+export const Layout = ({ menuItems, location }) => {
   const [collapsed, onCollapsed] = React.useState(true);
 
+  const selectedMenuItems = menuItems.filter(item => item.href === location.pathname);
+
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Sider collapsible collapsed={collapsed} onCollapse={isCollapsed => onCollapsed(isCollapsed)}>
-        <div className={'logo'} />
-        <Menu theme={'dark'} defaultSelectedKeys={['1']} mode={'inline'}>
-          <Menu.Item key={'1'}>
-            <Icon type={'pie-chart'} />
-            <span>Teams</span>
-          </Menu.Item>
+    <AntdLayout style={{ minHeight: '100vh' }}>
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={isCollapsed => onCollapsed(isCollapsed)}
+        className={layout.sider}
+      >
+        <div className={layout.logo}>LOGO</div>
+        <Menu
+          className={layout.siderMenu}
+          defaultSelectedKeys={selectedMenuItems.map(item => item.key)}
+          mode={'inline'}
+        >
+          {menuItems.map(item => (
+            <Menu.Item key={item.key} className={layout.siderMenuitem}>
+              <Link to={item.href}>
+                <Icon type={'pie-chart'} />
+                <span>{item.label}</span>
+              </Link>
+            </Menu.Item>
+          ))}
         </Menu>
       </Sider>
-      <Layout>
-        <Header style={{ background: '#fff', padding: 0 }} />
+      <AntdLayout className={layout.mainContentWrapper}>
+        <Header className={layout.header} activeMenuItem={selectedMenuItems[0]} />
         <Content style={{ margin: '16px' }}>
-          <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>Bill is a cat.</div>
+          <Switch>
+            {menuItems.map(item => (
+              <Route key={item.key} path={item.href} component={item.content} />
+            ))}
+          </Switch>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
-      </Layout>
-    </Layout>
+      </AntdLayout>
+    </AntdLayout>
   );
 };
+
+export default withRouter(Layout);
