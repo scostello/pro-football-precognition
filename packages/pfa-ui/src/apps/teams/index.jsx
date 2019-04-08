@@ -26,7 +26,7 @@ export default () => {
   return (
     <Row gutter={12}>
       <Col span={6}>
-        <Card title={'Default Card Title'} className={card.base}>
+        <Card title={Bengals} className={card.base}>
           <Logo name={'bengals'} />
         </Card>
       </Col>

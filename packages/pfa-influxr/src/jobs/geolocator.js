@@ -1,18 +1,20 @@
 import S from 'sanctuary';
 import { createClient } from '@google/maps';
 
-const googleMapsClient = createClient({
+const mapsClient = createClient({
   key: process.env.GOOGLE_MAPS_API_KEY,
+  Promise: Promise,
 });
 
-googleMapsClient.places({
-  query: 'Arrowhead Stadium',
-}, (err, response) => {
-  if (err) {
-    console.error('Something went wrong!');
-  }
+const getJsonResults = S.props(['json', 'results']);
 
-  const results = S.props(['json', 'results'], response);
+const getGeomLocation = S.props(['geometry', 'location']);
 
-  console.log(S.map(S.props(['geometry', 'location']), results));
-});
+mapsClient
+  .places({ query: 'Arrowhead Stadium' })
+  .asPromise()
+  .then(response => {
+    const results = getJsonResults(response);
+    const location = results.map(res => getGeomLocation(res));
+  })
+  .catch(err => console.log(err));
