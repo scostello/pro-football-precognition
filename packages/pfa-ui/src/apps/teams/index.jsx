@@ -13,20 +13,21 @@ export default () => {
     api
       .watchQuery({
         query: gql`
-          query getTeams {
-            teams
+          query getFranchises {
+            franchises
           }
         `,
       })
-      .subscribe(({ data: { teams } }) => {
-        setTeams(teams);
+      .subscribe(({ data: { franchises } }) => {
+        console.log(franchises);
+        setTeams(franchises);
       });
   }, []);
 
   return (
     <Row gutter={12}>
       <Col span={6}>
-        <Card title={Bengals} className={card.base}>
+        <Card title={'Bengals'} className={card.base}>
           <Logo name={'bengals'} />
         </Card>
       </Col>

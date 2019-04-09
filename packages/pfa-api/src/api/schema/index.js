@@ -4,7 +4,7 @@ import { gql } from 'apollo-server';
 import merge from 'lodash.merge';
 import GraphQLJSON from 'graphql-type-json';
 import players from './players';
-import teams from './teams';
+import franchises from './franchises';
 
 const rootSchema = gql`
   scalar JSON
@@ -25,13 +25,13 @@ const rootResolvers = {
 const typeDefs = [
   rootSchema,
   ...players.typeDefs,
-  ...teams.typeDefs,
+  ...franchises.typeDefs,
 ];
 
 const resolvers = merge(
   rootResolvers,
   players.resolvers,
-  teams.resolvers,
+  franchises.resolvers,
 );
 
 export default makeExecutableSchema({

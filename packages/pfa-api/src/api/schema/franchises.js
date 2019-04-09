@@ -3,13 +3,13 @@ import { gql } from 'apollo-server';
 
 const typeDefs = [gql`
   extend type Query {
-    teams: JSON  
+    franchises: JSON  
   }
 `];
 
 export const resolvers = {
   Query: {
-    teams: (_, __, { client }) => client.reporting.logos.find({}, { limit: 15 }),
+    franchises: (_, __, { client }) => client.reporting.franchises_materialized.find({}, { limit: 15 }),
   },
 };
 

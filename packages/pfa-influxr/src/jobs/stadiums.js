@@ -1,126 +1,132 @@
-export default [
+export const stadiums = [
   {
     team: 'KC',
-    stadium: 'Arrowhead Stadium',
+    name: 'Arrowhead Stadium',
   },
   {
     team: 'DAL',
-    stadium: 'AT&T Stadium',
+    name: 'AT&T Stadium',
   },
   {
     team: 'CAR',
-    stadium: 'Bank of America Stadium',
+    name: 'Bank of America Stadium',
   },
   {
     team: 'SEA',
-    stadium: 'CenturyLink Field',
+    name: 'CenturyLink Field',
   },
   {
     team: 'JAC',
-    stadium: 'EverBank Field',
+    name: 'TIAA Bank Field',
   },
   {
     team: 'WAS',
-    stadium: 'FedEx Field',
+    name: 'FedEx Field',
   },
   {
     team: 'CLE',
-    stadium: 'FirstEnergy Stadium',
+    name: 'FirstEnergy Stadium',
   },
   {
     team: 'DET',
-    stadium: 'Ford Field',
+    name: 'Ford Field',
   },
   {
     team: 'NE',
-    stadium: 'Gillette Stadium',
+    name: 'Gillette Stadium',
   },
   {
     team: 'MIA',
-    stadium: 'Hard Rock Stadium',
+    name: 'Hard Rock Stadium',
   },
   {
     team: 'PIT',
-    stadium: 'Heinz Field',
+    name: 'Heinz Field',
   },
   {
     team: 'GB',
-    stadium: 'Lambeau Field',
+    name: 'Lambeau Field',
   },
   {
     team: 'SF',
-    stadium: 'Levi\'s Stadium',
+    name: 'Levi\'s Stadium',
+  },
+  {
+    team: 'PHI',
+    name: 'Lincoln Financial Field',
   },
   {
     team: 'LAR',
-    stadium: 'Los Angeles Memorial Coliseum',
+    name: 'Los Angeles Memorial Coliseum',
   },
   {
     team: 'IND',
-    stadium: 'Lucas Oil Stadium',
+    name: 'Lucas Oil Stadium',
   },
   {
     team: 'BAL',
-    stadium: 'M&T Bank Stadium',
+    name: 'M&T Bank Stadium',
   },
   {
     team: 'NO',
-    stadium: 'Mercedes-Benz Superdome',
+    name: 'Mercedes-Benz Superdome',
   },
   {
     team: 'ATL',
-    stadium: 'Mercedes-Benz Stadium',
+    name: 'Mercedes-Benz Stadium',
   },
   {
     team: 'NYJ',
-    stadium: 'MetLife Stadium',
+    name: 'MetLife Stadium',
   },
   {
     team: 'NYG',
-    stadium: 'MetLife Stadium',
+    name: 'MetLife Stadium',
   },
   {
     team: 'BUF',
-    stadium: 'New Era Field',
+    name: 'New Era Field',
   },
   {
     team: 'TEN',
-    stadium: 'Nissan Stadium',
+    name: 'Nissan Stadium',
   },
   {
     team: 'HOU',
-    stadium: 'NRG Stadium',
+    name: 'NRG Stadium',
   },
   {
     team: 'OAK',
-    stadium: 'Oakland–Alameda County Coliseum',
+    name: 'Oakland–Alameda County Coliseum',
   },
   {
     team: 'CIN',
-    stadium: 'Paul Brown Stadium',
+    name: 'Paul Brown Stadium',
   },
   {
     team: 'TB',
-    stadium: 'Raymond James Stadium',
+    name: 'Raymond James Stadium',
   },
   {
     team: 'CHI',
-    stadium: 'Soldier Field',
+    name: 'Soldier Field',
   },
   {
     team: 'DEN',
-    stadium: 'Sports Authority Field at Mile High',
+    name: 'Sports Authority Field at Mile High',
   },
   {
     team: 'LAC',
-    stadium: 'StubHub Center',
+    name: 'Dignity Health Sports Park',
   },
   {
     team: 'ARI',
-    stadium: 'University of Phoenix Stadium',
+    name: 'University of Phoenix Stadium',
   },
   {
     team: 'MIN',
-    stadium: 'U.S. Bank Stadium',
+    name: 'U.S. Bank Stadium',
   },
 ];
+
+export default stadiums;
