@@ -1,11 +1,12 @@
 // @flow
 import * as React from 'react';
+import makeInspectable from 'mobx-devtools-mst';
 import { Router } from 'react-router';
-import { Provider } from 'mobx-react';
+import { Provider as MobXProvider } from 'mobx-react';
 import { createBrowserHistory } from 'history';
 import { createAppStore } from 'shared/stores';
 import Layout from './common/Layout';
-import Teams from './teams';
+import Franchises from './franchises';
 
 const history = createBrowserHistory();
 const store = createAppStore();
@@ -15,7 +16,7 @@ const menuItems = [
     key: 'teams',
     label: 'Teams',
     href: '/teams',
-    content: Teams,
+    content: Franchises,
   },
   {
     key: 'players',
@@ -31,10 +32,16 @@ const menuItems = [
   },
 ];
 
+// ========================================================
+// Dev Tools Setup
+// ========================================================
+
+if (process.env.NODE_ENV === 'development') makeInspectable(store);
+
 export default () => (
-  <Provider store={store}>
+  <MobXProvider store={store}>
     <Router history={history}>
       <Layout menuItems={menuItems} />
     </Router>
-  </Provider>
+  </MobXProvider>
 );

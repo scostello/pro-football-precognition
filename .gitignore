@@ -1,3 +1,4 @@
+.DS_Store
 build/
 .nyc_output/
 .env

@@ -25,9 +25,8 @@
   },
   "settings": {
     "import/resolver": {
-      "node": {
-        "moduleDirectory": ["node_modules"],
-        "paths": ["src/apps", "src/shared"]
+      "webpack": {
+        "config": "webpack/webpack.config.js"
       }
     }
   }
