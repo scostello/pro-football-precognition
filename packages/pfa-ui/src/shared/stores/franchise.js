@@ -8,8 +8,8 @@ export const Franchise = types.model({
   isActive: true,
   mascot: '',
   stadiumName: '',
-  activeFrom: types.number,
-  activeTo: types.number,
+  activeFrom: types.optional(types.number, 2019),
+  activeTo: types.optional(types.number, 2019),
 });
 
 export default Franchise;
