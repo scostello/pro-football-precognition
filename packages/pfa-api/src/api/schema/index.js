@@ -9,6 +9,11 @@ import franchises from './franchises';
 const rootSchema = gql`
   scalar JSON
   
+  enum OrderDirection {
+    ASC
+    DESC
+  }
+  
   # Base Query type we'll use to extend in the other modules
   type Query {
     _ : Boolean
