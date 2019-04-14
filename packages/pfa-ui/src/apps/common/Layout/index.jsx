@@ -5,12 +5,12 @@ import {
   withRouter, Link, Route, Switch,
 } from 'react-router-dom';
 import Header from './Header';
-import layout from './Layout.less';
+import layout from './layout.less';
 
 const { Content, Sider } = AntdLayout;
 
 export const Layout = ({ menuItems, location }) => {
-  const [collapsed, onCollapsed] = React.useState(true);
+  const [collapsed, onCollapsed] = React.useState(false);
 
   const selectedMenuItems = menuItems.filter(item => item.href === location.pathname);
 

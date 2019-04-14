@@ -7,8 +7,11 @@ import { Franchise } from './franchise';
 const franchisesQuery = gql`
   query fetchFranchises {
     franchises {
-      idFranchise
-      teamFull
+      cursor
+      nodes {
+        idFranchise
+        teamFull
+      }
     }
   }
 `;
@@ -19,8 +22,12 @@ const fetchAs = self => flow(function* fetch(resource: string) {
     const {
       data: { franchises },
     } = yield self.api.query({ query: franchisesQuery });
-    debugger;
-    self.franchises = franchises;
+
+    const { cursor, nodes } = franchises;
+
+    console.log(nodes);
+
+    self.franchises = nodes;
     self.state = 'done';
   } catch (error) {
     console.log('in error', error);

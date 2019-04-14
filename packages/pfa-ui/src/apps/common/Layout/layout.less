@@ -16,9 +16,15 @@
   text-align: center;
 }
 
+// overflow: 'auto', height: '100vh', position: 'fixed', left: 0,
+
 .sider {
   background-image: @gradient-background;
   border-right: 1px solid #f5f5f5;
+  overflow: auto;
+  height: 100vh;
+  position: fixed;
+  left: 0;
 
   .sider-menu {
     background: transparent;
@@ -56,6 +62,7 @@
 }
 
 .main-content-wrapper {
+  margin-left: 200px;
   background: #fcfcfc;
 }
 

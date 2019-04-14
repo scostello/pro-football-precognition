@@ -41,29 +41,42 @@ const columns = [
   },
 ];
 
-export class Franchises extends React.Component<{}> {
-  constructor(props) {
-    super(props);
-    props.store.getFranchises();
+const withResources = resource => (WrappedComponent) => {
+  class Resource extends React.Component<{}> {
+    componentDidMount(): void {
+      const { store } = this.props;
+      store.getFranchises();
+    }
+
+    render() {
+      const {
+        store: { state, franchises },
+      } = this.props;
+
+      return <WrappedComponent loadingState={state} franchises={franchises} />;
+    }
   }
 
-  render() {
-    const {
-      store: { franchises },
-    } = this.props;
-    return (
-      <Row gutter={12}>
-        {franchises.map(franchise => (
-          <Col key={franchise.idFranchise} span={12}>
-            <Card title={franchise.teamFull} className={card.base}>
-              <Spark />
-              <Table dataSource={dataSource} columns={columns} size={'small'} pagination={false} />
-            </Card>
-          </Col>
-        ))}
-      </Row>
-    );
-  }
-}
+  return inject('store')(observer(Resource));
+};
 
-export default inject('store')(observer(Franchises));
+const Franchises = ({ franchises }) => {
+  console.log(franchises.length);
+
+  return (
+    <Row gutter={12}>
+      {franchises.map(franchise => (
+        <Col key={franchise.idFranchise} span={12}>
+          <Card title={franchise.teamFull} className={card.base}>
+            <Spark />
+            <Table dataSource={dataSource} columns={columns} size={'small'} pagination={false} />
+          </Card>
+        </Col>
+      ))}
+    </Row>
+  );
+};
+
+const withFranchises = withResources('franchises');
+
+export default withFranchises(Franchises);
