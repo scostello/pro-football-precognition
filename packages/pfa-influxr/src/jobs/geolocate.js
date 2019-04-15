@@ -37,7 +37,6 @@ const db$ = Rx.from(massive({
 
 const location$ = Rx.from(stadiums)
   .pipe(
-    RxOp.filter(({ team }) => team === 'PHI'),
     RxOp.map(({ team, name }) => ({
       team,
       query: name,

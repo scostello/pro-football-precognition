@@ -3,16 +3,21 @@ import { gql } from 'apollo-server';
 import * as R from 'ramda';
 import * as R_ from 'ramda-extension';
 
-const typeDefs = [gql`
+const FranchiseSchema = gql`
   type Franchise {
-    idFranchise : String!
-    teamFull    : String!
-    teamAbbr    : String!
-    mascot      : String!
-    stadiumName : String
-    activeFrom  : Int!
-    activeTo    : Int!
-    isActive    : Boolean!
+    idFranchise       : String!
+    teamFull          : String!
+    teamAbbr          : String!
+    mascot            : String!
+    stadiumName       : String
+    activeFrom        : Int!
+    activeTo          : Int!
+    isActive          : Boolean!
+    totalGames        : Int
+    totalWins         : Int
+    totalLosses       : Int
+    totalTies         : Int
+    winningPercentage : Float 
   }
   
   type FranchiseConnection {
@@ -38,17 +43,19 @@ const typeDefs = [gql`
       orderBy : FranchiseOrder 
     ): FranchiseConnection
   }
-`];
+`;
 
-const fields = {
+const typeDefs = [FranchiseSchema];
+
+const fieldsMap = {
   CREATED_AT: 'id_franchise',
   NAME: 'team_abbr',
-  year_founded: 'active_from',
+  YEAR_FOUNDED: 'active_from',
 };
 
 const buildQueryOpts = ({ cursor, first = 50, orderBy }) => {
   const orderField = {
-    field: R.propOr('id_franchise', R.pathOr('CREATED_AT', ['field'], orderBy), fields),
+    field: R.propOr('id_franchise', R.pathOr('CREATED_AT', ['field'], orderBy), fieldsMap),
     direction: R.pathOr('ASC', ['direction'], orderBy),
   };
 
