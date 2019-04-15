@@ -1,4 +1,5 @@
 // @flow
+import * as R from 'ramda';
 import { makeExecutableSchema } from 'graphql-tools';
 import { gql } from 'apollo-server';
 import merge from 'lodash.merge';
@@ -33,10 +34,12 @@ const typeDefs = [
   ...franchises.typeDefs,
 ];
 
+const resolversFrom = R.prop('resolvers');
+
 const resolvers = merge(
   rootResolvers,
-  players.resolvers,
-  franchises.resolvers,
+  resolversFrom(players),
+  resolversFrom(franchises),
 );
 
 export default makeExecutableSchema({
