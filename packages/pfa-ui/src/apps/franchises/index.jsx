@@ -4,26 +4,14 @@ import { observer, inject } from 'mobx-react';
 import {
   Row, Col, Card, Table,
 } from 'antd';
-import Logo from 'apps/common/Logos';
-import Spark from './Spark';
 import card from './card.less';
 
-const dataSource = [
-  {
-    key: '1',
-    wins: 100,
-    losses: 41,
-    win_perc: (100 / 141) * 100,
-  },
-  {
-    key: '2',
-    wins: 100,
-    losses: 41,
-    win_perc: (100 / 141) * 100,
-  },
-];
-
 const columns = [
+  {
+    title: 'Games',
+    dataIndex: 'games',
+    key: 'games',
+  },
   {
     title: 'Wins',
     dataIndex: 'wins',
@@ -35,9 +23,14 @@ const columns = [
     key: 'losses',
   },
   {
+    title: 'Ties',
+    dataIndex: 'ties',
+    key: 'ties',
+  },
+  {
     title: 'Win %',
-    dataIndex: 'win_perc',
-    key: 'win_perc',
+    dataIndex: 'winPerc',
+    key: 'winPerc',
   },
 ];
 
@@ -60,22 +53,31 @@ const withResources = resource => (WrappedComponent) => {
   return inject('store')(observer(Resource));
 };
 
-const Franchises = ({ franchises }) => {
-  console.log(franchises.length);
-
-  return (
-    <Row gutter={12}>
-      {franchises.map(franchise => (
-        <Col key={franchise.idFranchise} span={12}>
-          <Card title={franchise.teamFull} className={card.base}>
-            <Spark />
-            <Table dataSource={dataSource} columns={columns} size={'small'} pagination={false} />
-          </Card>
-        </Col>
-      ))}
-    </Row>
-  );
-};
+const Franchises = ({ franchises }) => (
+  <Row gutter={12}>
+    {franchises.map(franchise => (
+      <Col key={franchise.idFranchise} span={6}>
+        <Card title={franchise.teamFull} className={card.base}>
+          <Table
+            dataSource={[
+              {
+                key: franchise.idFranchise,
+                games: franchise.totalGames,
+                wins: franchise.totalWins,
+                losses: franchise.totalLosses,
+                ties: franchise.totalTies,
+                winPerc: `${franchise.winPerc} %`,
+              },
+            ]}
+            columns={columns}
+            size={'small'}
+            pagination={false}
+          />
+        </Card>
+      </Col>
+    ))}
+  </Row>
+);
 
 const withFranchises = withResources('franchises');
 
