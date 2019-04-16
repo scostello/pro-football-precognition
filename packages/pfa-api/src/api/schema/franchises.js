@@ -12,12 +12,7 @@ const FranchiseSchema = gql`
     stadiumName       : String
     activeFrom        : Int!
     activeTo          : Int!
-    isActive          : Boolean!
-    totalGames        : Int
-    totalWins         : Int
-    totalLosses       : Int
-    totalTies         : Int
-    winningPercentage : Float 
+    isActive          : Boolean! 
   }
   
   type FranchiseConnection {
@@ -73,7 +68,7 @@ const buildQueryOpts = ({ cursor, first = 50, orderBy }) => {
 
 const getFranchises = (_, args, { client }) => client
   .reporting
-  .franchises_materialized
+  .franchise_stadiums
   .find({ is_active: true }, buildQueryOpts(args))
   .then(franchises => franchises.map(R_.camelizeKeys))
   .then(franchises => ({

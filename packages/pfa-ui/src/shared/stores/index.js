@@ -11,11 +11,6 @@ const franchisesQuery = gql`
       nodes {
         idFranchise
         teamFull
-        totalGames
-        totalWins
-        totalLosses
-        totalTies
-        winningPercentage
       }
     }
   }

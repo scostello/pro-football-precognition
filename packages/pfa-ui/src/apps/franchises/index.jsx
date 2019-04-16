@@ -4,6 +4,7 @@ import { observer, inject } from 'mobx-react';
 import {
   Row, Col, Card, Table,
 } from 'antd';
+import Sample from 'apps/widgets/Sample';
 import card from './card.less';
 
 const columns = [
@@ -56,23 +57,9 @@ const withResources = resource => (WrappedComponent) => {
 const Franchises = ({ franchises }) => (
   <Row gutter={12}>
     {franchises.map(franchise => (
-      <Col key={franchise.idFranchise} span={6}>
+      <Col key={franchise.idFranchise} span={12}>
         <Card title={franchise.teamFull} className={card.base}>
-          <Table
-            dataSource={[
-              {
-                key: franchise.idFranchise,
-                games: franchise.totalGames,
-                wins: franchise.totalWins,
-                losses: franchise.totalLosses,
-                ties: franchise.totalTies,
-                winPerc: `${franchise.winPerc} %`,
-              },
-            ]}
-            columns={columns}
-            size={'small'}
-            pagination={false}
-          />
+          <Sample />
         </Card>
       </Col>
     ))}

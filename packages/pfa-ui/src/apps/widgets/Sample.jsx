@@ -4,13 +4,15 @@ import OrdinalFrame from 'semiotic/lib/OrdinalFrame';
 
 const frameProps = {
   data: [
-    { sales: 5, leads: 150, month: 'Jan' },
-    { sales: 7, leads: 100, month: 'Feb' },
-    { sales: 7, leads: 75, month: 'Mar' },
-    { sales: 4, leads: 50, month: 'Apr' },
-    { sales: 2, leads: 200, month: 'May' },
-    { sales: 3, leads: 175, month: 'Jun' },
-    { sales: 5, leads: 125, month: 'Jul' },
+    { wins: 5, losses: 11, season: 2000 },
+    { wins: 7, losses: 11, season: 2001 },
+    { wins: 7, losses: 11, season: 2002 },
+    { wins: 9, losses: 11, season: 2003 },
+    { wins: 12, losses: 11, season: 2004 },
+    { wins: 11, losses: 11, season: 2005 },
+    { wins: 6, losses: 11, season: 2006 },
+    { wins: 5, losses: 11, season: 2007 },
+    { wins: 7, losses: 11, season: 2008 },
   ],
   size: [700, 500],
   margin: {
@@ -32,43 +34,25 @@ const frameProps = {
     return e.rIndex !== 0 && e.rIndex;
   },
   oPadding: 10,
-  oAccessor: 'month',
-  rAccessor: ['leads', 'sales'],
-  rExtent: [0],
+  oAccessor: 'season',
+  rAccessor: 'wins',
+  rExtent: [0, 20],
   style: { fill: '#ac58e5', opacity: 1, stroke: 'white' },
   connectorStyle: { stroke: '#E0488B', strokeWidth: 3 },
-  title: (
-    <text>
-      <tspan fill={'#E0488B'}>Sales</tspan>
-      {' '}
-vs
-      <tspan fill={'#ac58e5'}>Leads</tspan>
-    </text>
-  ),
+  title: <text>{'Wins per Season'}</text>,
   axes: [
     {
-      key: 'leads-axis',
-      orient: 'right',
-      ticks: 3,
-      tickValues: [0, 25, 50, 75, 100, 125, 150, 175, 200],
-      label: (
-        <text fontWeight="bold" fill={'#ac58e5'}>
-          Leads
-        </text>
-      ),
-    },
-    {
-      key: 'sales-axis',
+      key: 'wins-axis',
       orient: 'left',
-      tickValues: [0, 1, 2, 3, 4, 5, 6, 7],
+      tickValues: [0, 4, 8, 12, 16, 20],
       label: (
         <text fontWeight="bold" fill={'#E0488B'}>
-          Sales
+          Wins
         </text>
       ),
     },
   ],
-  multiAxis: true,
+  multiAxis: false,
   renderOrder: ['pieces', 'connectors'],
   pieceHoverAnnotation: [
     {

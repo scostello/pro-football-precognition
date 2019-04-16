@@ -11,11 +11,6 @@ export const Franchise = types
     stadiumName: '',
     activeFrom: types.optional(types.number, 2019),
     activeTo: types.optional(types.number, 2019),
-    totalGames: types.number,
-    totalWins: types.number,
-    totalLosses: types.number,
-    totalTies: types.number,
-    winningPercentage: types.number,
   })
   .views(self => ({
     get winPerc() {
