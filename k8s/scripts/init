@@ -1,0 +1,12 @@
+#!/bin/sh
+CPUS="${CPUS:-"4"}"
+MEMORY_GI="${MEMORY_GI:-"6"}"
+DISK_SIZE="${DISK_SIZE:-"80g"}"
+
+MEM="$(expr ${MEMORY_GI} \* 1024)"
+
+exec minikube start \
+  --cpus="${CPUS}" \
+  --memory="${MEM}" \
+  --disk-size="${DISK_SIZE}" \
+  "$@"

@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "lerna": "lerna",
-    "seed": "scripts/seed"
+    "k8s:init": "k8s/scripts/init"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",

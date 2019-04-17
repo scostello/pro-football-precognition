@@ -1,5 +1,0 @@
-#!/bin/bash
-
-prefix="pro-football-analytics_"
-
-./scripts/seed-pg-data "${prefix}postgres_1"

@@ -1,0 +1,21 @@
+#!/bin/sh
+
+pg_repo="sean.costello/postgis"
+pg_tag="2.5.2-debian"
+
+pg_user="postgres"
+pg_password="mysecretpassword"
+
+kubectl config use-context minikube
+kubectl -n kube-system create sa tiller
+kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+helm init --service-account tiller --wait
+
+helm install --name postgres \
+    --set global.imagePullSecrets[0]="quay-pull-secret" \
+    --set image.registry="quay.io" \
+    --set image.repository=${pg_repo} \
+    --set image.tag=${pg_tag} \
+    --set postgresqlUsername=${pg_user} \
+    --set postgresqlPassword=${pg_password} \
+    stable/postgresql
