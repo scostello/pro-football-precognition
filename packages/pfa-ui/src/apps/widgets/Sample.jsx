@@ -54,38 +54,6 @@ const frameProps = {
   ],
   multiAxis: false,
   renderOrder: ['pieces', 'connectors'],
-  pieceHoverAnnotation: [
-    {
-      type: 'highlight',
-      style: {
-        stroke: 'white',
-        fill: 'white',
-        strokeWidth: 4,
-        strokeOpacity: 0.5,
-      },
-    },
-    { type: 'frame-hover' },
-  ],
-  tooltipContent: (d) => {
-    const bothValues = [
-      <div style={{ color: '#ac58e5' }} key={'1'}>
-        Leads:
-        {' '}
-        {d.leads}
-      </div>,
-      <div style={{ color: '#E0488B' }} key="2">
-        Sales:
-        {' '}
-        {d.sales}
-      </div>,
-    ];
-    const content = d.rIndex === 0 ? bothValues : bothValues.reverse();
-    return (
-      <div style={{ fontWeight: 900 }} className="tooltip-content">
-        {content}
-      </div>
-    );
-  },
   oLabel: true,
 };
 

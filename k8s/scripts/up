@@ -1,0 +1,37 @@
+#!/bin/sh
+
+install_tiller() {
+    kubectl config use-context minikube
+    kubectl -n kube-system create sa tiller
+    kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+    helm init --service-account tiller --wait
+}
+
+install_pg() {
+    local pg_repo="sean.costello/postgis"
+    local pg_tag="2.5.2-debian"
+    local pg_user="postgres"
+    local pg_password="mysecretpassword"
+
+    if [[ $(helm list -q | grep postgres | wc -l) -ge "1" ]]; then
+        helm del --purge postgres
+    fi
+
+    helm install --name postgres \
+        --set global.imagePullSecrets[0]="quay-pull-secret" \
+        --set image.registry="quay.io" \
+        --set image.repository=${pg_repo} \
+        --set image.tag=${pg_tag} \
+        --set postgresqlUsername=${pg_user} \
+        --set postgresqlPassword=${pg_password} \
+        stable/postgresql
+}
+
+install_nginx() {
+    helm install --name nginx \
+        stable/nginx-ingress
+}
+
+install_tiller
+install_pg
+install_nginx

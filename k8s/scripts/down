@@ -1,0 +1,3 @@
+#!/bin/sh
+
+helm del --purge postgres
