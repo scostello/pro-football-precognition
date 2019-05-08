@@ -1,12 +1,39 @@
 #!/bin/sh
-CPUS="${CPUS:-"4"}"
-MEMORY_GI="${MEMORY_GI:-"6"}"
+CPUS="${CPUS:-"2"}"
+MEMORY_GI="${MEMORY_GI:-"4"}"
 DISK_SIZE="${DISK_SIZE:-"80g"}"
 
 MEM="$(expr ${MEMORY_GI} \* 1024)"
 
-exec minikube start \
+minikube start \
   --cpus="${CPUS}" \
   --memory="${MEM}" \
   --disk-size="${DISK_SIZE}" \
   "$@"
+
+HOSTS_FILE="/etc/hosts"
+MINIKUBE_HOSTNAME="pfa.test"
+MINIKUBE_SUBDOMAINS="api"
+
+if [[ $EUID -ne 0 ]]; then
+  echo "Please enter your password for 'sudo' - Required to update ${HOSTS_FILE}"
+  sudo echo >> /dev/null
+fi
+
+# Configure hosts file
+MINIKUBE_IP="$(minikube ip)"
+
+if [[ -n "$(grep ${MINIKUBE_HOSTNAME} ${HOSTS_FILE})" ]]; then
+  # If a minikube entry already exists, delete it
+  sudo sed -i '' -e "/$MINIKUBE_HOSTNAME/d" ${HOSTS_FILE}
+fi
+
+HOSTS_ENTRY="${MINIKUBE_IP} ${MINIKUBE_HOSTNAME}"
+for subdomain in ${MINIKUBE_SUBDOMAINS}; do
+  HOSTS_ENTRY="${HOSTS_ENTRY} ${subdomain}.${MINIKUBE_HOSTNAME}"
+done
+
+echo "${HOSTS_ENTRY}" | sudo tee -a ${HOSTS_FILE}
+
+eval $(minikube docker-env)
+echo "Now using the the minikube docker daemon"

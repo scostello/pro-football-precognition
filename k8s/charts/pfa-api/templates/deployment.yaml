@@ -23,24 +23,47 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - "/bin/sh"
+            - "-ecx"
+            - |
+              {{ .Values.image.command }}
+          env:
+          - name: PG_HOST
+            value: "postgres-postgresql.default.svc"
+          - name: PG_PORT
+            value: "5432"
+          - name: PG_DB_NAME
+            value: "postgres"
+          - name: PG_DB_USER
+            value: "postgres"
+          - name: PG_DB_PASSWORD
+            value: "mysecretpassword"
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 4000
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /healthz
               port: http
           readinessProbe:
             httpGet:
-              path: /
+              path: /healthz
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: pfa-api-pkg
+              mountPath: "/apps/pfa-api"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+        - name: pfa-api-pkg
+          hostPath:
+            path: "{{ .Values.image.package_path }}"
     {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}

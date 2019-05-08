@@ -16,4 +16,4 @@ RUN yarn install &&\
 
 EXPOSE 3030 5858
 
-CMD ["npm", "start"]
+CMD ["yarn", "run", "watch"]

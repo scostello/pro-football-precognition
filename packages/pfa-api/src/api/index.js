@@ -12,6 +12,7 @@ export default () => {
     port: process.env.PG_PORT || 5432,
     database: process.env.PG_DB_NAME || 'postgres',
     user: process.env.PG_DB_USER || 'postgres',
+    password: process.env.PG_DB_PASSWORD || null,
     poolSize: 5,
   }));
   const app$ = Rx.of(express());
@@ -20,6 +21,7 @@ export default () => {
   return Rx.forkJoin(db$, app$, serverFxty$)
     .pipe(
       RxOp.mergeMap(([_db, _app, _serverFxty]) => {
+        _app.use('/healthz', (req, res) => res.sendStatus(200));
         _serverFxty({ client: _db }).applyMiddleware({ app: _app });
         return Rx.of(_app);
       }),

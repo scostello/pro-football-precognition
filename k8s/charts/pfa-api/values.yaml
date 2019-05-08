@@ -5,25 +5,27 @@
 replicaCount: 1
 
 image:
-  repository: nginx
-  tag: stable
-  pullPolicy: IfNotPresent
+  repository: quay.io/sean.costello/pfa-api
+  tag: 0.1.0
+  pullPolicy: Never
+  command: exec yarn run watch
+
 
 nameOverride: ""
 fullnameOverride: ""
 
 service:
   type: ClusterIP
-  port: 80
+  port: 4000
 
 ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: kong
   hosts:
-    - host: chart-example.local
-      paths: []
+    - host: api.pfa.test
+      paths:
+        - /
 
   tls: []
   #  - secretName: chart-example-tls

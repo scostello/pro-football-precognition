@@ -1,37 +1,67 @@
 #!/bin/sh
 
+kubectl config use-context minikube
+
 install_tiller() {
-    kubectl config use-context minikube
+
+  kubectl -n kube-system create sa tiller
+  kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+  helm init --service-account tiller --wait
+
+  if [[ $(kubectl get sa --all-namespaces -o json | jq '.items[].metadata.name' | grep tiller | wc -l) == "0" ]]; then
     kubectl -n kube-system create sa tiller
     kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
     helm init --service-account tiller --wait
+  fi
 }
 
 install_pg() {
-    local pg_repo="sean.costello/postgis"
-    local pg_tag="2.5.2-debian"
-    local pg_user="postgres"
-    local pg_password="mysecretpassword"
+  local pg_repo="sean.costello/postgis"
+  local pg_tag="2.5.2-debian"
+  local pg_user="postgres"
+  local pg_password="mysecretpassword"
 
-    if [[ $(helm list -q | grep postgres | wc -l) -ge "1" ]]; then
-        helm del --purge postgres
-    fi
+  if [[ $(helm list -q | grep postgres | wc -l) -ge "1" ]]; then
+    helm del --purge postgres
+  fi
 
-    helm install --name postgres \
-        --set global.imagePullSecrets[0]="quay-pull-secret" \
-        --set image.registry="quay.io" \
-        --set image.repository=${pg_repo} \
-        --set image.tag=${pg_tag} \
-        --set postgresqlUsername=${pg_user} \
-        --set postgresqlPassword=${pg_password} \
-        stable/postgresql
+  helm install --name postgres \
+    --set global.imagePullSecrets[0]="quay-pull-secret" \
+    --set image.registry="quay.io" \
+    --set image.repository=${pg_repo} \
+    --set image.tag=${pg_tag} \
+    --set postgresqlUsername=${pg_user} \
+    --set postgresqlPassword=${pg_password} \
+    stable/postgresql
 }
 
-install_nginx() {
-    helm install --name nginx \
-        stable/nginx-ingress
+install_kong_ingress() {
+
+  if [[ $(helm list -q | grep kong-ingress | wc -l) -ge "1" ]]; then
+    helm del --purge kong
+  fi
+
+  INGRESS_PORT_HTTP="80"
+  helm install \
+    --name kong-ingress \
+    --set proxy.tls.enabled=false \
+    --set ingressController.enabled=true \
+    --set proxy.http.hostPort=${INGRESS_PORT_HTTP} \
+    --set postgresql.persistence.enabled=false \
+    stable/kong
+}
+
+install_api() {
+
+  if [[ $(helm list -q | grep pfa-api | wc -l) -ge "1" ]]; then
+    helm del --purge pfa-api
+  fi
+
+  helm install --name pfa-api \
+    k8s/charts/pfa-api
 }
 
 install_tiller
 install_pg
-install_nginx
+install_kong_ingress
+install_api

@@ -1,6 +1,7 @@
 quay-pull-secret.yml
 .DS_Store
 build/
+lib/
 .nyc_output/
 .env
 .tfenvvars

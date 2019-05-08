@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "lerna": "lerna",
+    "k8s:bootstrap": "yarn run k8s:init && yarn run k8s:up",
     "k8s:init": "k8s/scripts/init",
     "k8s:up": "k8s/scripts/up",
     "k8s:down": "k8s/scripts/down"

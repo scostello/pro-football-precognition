@@ -1,3 +1,9 @@
 #!/bin/sh
 
-helm del --purge $(helm list -q)
+kubectl config use-context minikube
+
+delete_helm_installs() {
+  helm del --purge $(helm list -q)
+}
+
+delete_helm_installs
