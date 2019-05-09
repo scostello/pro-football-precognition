@@ -2,12 +2,16 @@
   "name": "pfa-ui",
   "version": "0.1.0",
   "scripts": {
-    "precommit": "lint-staged",
     "start": "NODE_ENV=\"development\" webpack-dev-server --colors --config ./webpack/webpack.config.js",
     "test": "yarn run rest --watch",
     "build": "NODE_ENV=production webpack --config ./webpack/webpack.config.js",
     "lint": "eslint src -c .eslintrc --ext js,jsx",
     "format": "prettier-eslint 'src/**/!(*.min).js' 'src/**/*.{js,jsx,less}' --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "linters": {
@@ -41,7 +45,7 @@
     "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js"
   },
   "dependencies": {
-    "antd": "^3.16.1",
+    "antd": "^3.17.0",
     "apollo-cache-inmemory": "^1.5.1",
     "apollo-client": "^2.5.1",
     "apollo-link": "^1.2.11",
@@ -63,7 +67,7 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "rxjs": "^6.4.0",
-    "semiotic": "^1.19.2"
+    "semiotic": "^1.19.7"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",

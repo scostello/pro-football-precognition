@@ -28,17 +28,9 @@ spec:
             - "-ecx"
             - |
               {{ .Values.image.command }}
-          env:
-          - name: PG_HOST
-            value: "postgres-postgresql.default.svc"
-          - name: PG_PORT
-            value: "5432"
-          - name: PG_DB_NAME
-            value: "postgres"
-          - name: PG_DB_USER
-            value: "postgres"
-          - name: PG_DB_PASSWORD
-            value: "mysecretpassword"
+          envFrom:
+            - configMapRef:
+                name: "{{ template "pfa-api.fullname" . }}-env"
           ports:
             - name: http
               containerPort: 4000

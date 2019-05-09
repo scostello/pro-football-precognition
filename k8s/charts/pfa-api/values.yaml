@@ -9,6 +9,14 @@ image:
   tag: 0.1.0
   pullPolicy: Never
   command: exec yarn run watch
+  env:
+    API_HOST: "0.0.0.0"
+    API_PORT: "4000"
+    PG_HOST: "postgres-postgresql.default.svc"
+    PG_PORT: "5432"
+    PG_DB_NAME: "pro_football_analytics"
+    PG_DB_USER: "pfa_master"
+    PG_DB_PASSWORD: "mysecretpassword"
 
 
 nameOverride: ""

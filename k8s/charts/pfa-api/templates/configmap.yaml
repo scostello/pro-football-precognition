@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "pfa-api.fullname" . }}-env
+data:
+  # API
+  API_HOST: {{ .Values.image.env.API_HOST | default "0.0.0.0" | quote }}
+  API_PORT: {{ .Values.image.env.API_PORT | default "4000" | quote }}
+  # DB
+  PG_HOST: {{ .Values.image.env.PG_HOST | default "localhost"  | quote }}
+  PG_PORT: {{ .Values.image.env.PG_PORT | default "5432" | quote}}
+  PG_DB_NAME: {{ .Values.image.env.PG_DB_NAME | default "postgres"| quote }}
+  PG_DB_USER: {{ .Values.image.env.PG_DB_USER | default "postgres" | quote }}
+  PG_DB_PASSWORD: {{ .Values.image.env.PG_DB_PASSWORD | default "password" | quote }}

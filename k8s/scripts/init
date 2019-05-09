@@ -13,7 +13,7 @@ minikube start \
 
 HOSTS_FILE="/etc/hosts"
 MINIKUBE_HOSTNAME="pfa.test"
-MINIKUBE_SUBDOMAINS="api"
+MINIKUBE_SUBDOMAINS="api db"
 
 if [[ $EUID -ne 0 ]]; then
   echo "Please enter your password for 'sudo' - Required to update ${HOSTS_FILE}"

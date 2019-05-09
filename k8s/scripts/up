@@ -2,11 +2,13 @@
 
 kubectl config use-context minikube
 
+project_root=$(pwd)
+
 install_tiller() {
 
-  kubectl -n kube-system create sa tiller
-  kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
-  helm init --service-account tiller --wait
+#  kubectl -n kube-system create sa tiller
+#  kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+#  helm init --service-account tiller --wait
 
   if [[ $(kubectl get sa --all-namespaces -o json | jq '.items[].metadata.name' | grep tiller | wc -l) == "0" ]]; then
     kubectl -n kube-system create sa tiller
@@ -20,6 +22,7 @@ install_pg() {
   local pg_tag="2.5.2-debian"
   local pg_user="postgres"
   local pg_password="mysecretpassword"
+  local pg_node_port="30543"
 
   if [[ $(helm list -q | grep postgres | wc -l) -ge "1" ]]; then
     helm del --purge postgres
@@ -33,12 +36,16 @@ install_pg() {
     --set postgresqlUsername=${pg_user} \
     --set postgresqlPassword=${pg_password} \
     stable/postgresql
+
+  kubectl apply -f k8s/inf/postgres.service.yaml
+
+  echo "When available, postgres is accessible at db.pfa.test:${pg_node_port}"
 }
 
 install_kong_ingress() {
 
   if [[ $(helm list -q | grep kong-ingress | wc -l) -ge "1" ]]; then
-    helm del --purge kong
+    helm del --purge kong-ingress
   fi
 
   INGRESS_PORT_HTTP="80"
@@ -58,6 +65,7 @@ install_api() {
   fi
 
   helm install --name pfa-api \
+    --set image.package_path="${project_root}/packages/pfa-api" \
     k8s/charts/pfa-api
 }
 
