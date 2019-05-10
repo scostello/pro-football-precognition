@@ -4,6 +4,18 @@ import * as R from 'ramda';
 import * as R_ from 'ramda-extension';
 
 const FranchiseSchema = gql`
+  
+  type SeasonStats {
+    season            : Int!
+    totalHomeGames    : Int!
+    totalAwayGames    : Int!
+    totalGames        : Int!
+    totalWins         : Int!
+    totalLosses       : Int!
+    totalTies         : Int!
+    winningPercentage : Float!
+  }
+  
   type Franchise {
     idFranchise       : String!
     teamFull          : String!
@@ -12,7 +24,8 @@ const FranchiseSchema = gql`
     stadiumName       : String
     activeFrom        : Int!
     activeTo          : Int!
-    isActive          : Boolean! 
+    isActive          : Boolean!
+    seasonStats       : [SeasonStats]!
   }
   
   type FranchiseConnection {
@@ -77,9 +90,20 @@ const getFranchises = (_, args, { client }) => client
   }))
   .catch(err => console.log(err));
 
+const getSeasonStats = ({ teamAbbr }, args, { client }) => {
+  return client
+    .reporting
+    .team_game_outcomes_materialized
+    .find({ team_abbr: teamAbbr }, { order: [{ field: 'season', direction: 'ASC' }] })
+    .then(gameOutcomes => gameOutcomes.map(R_.camelizeKeys));
+};
+
 export const resolvers = {
   Query: {
     franchises: getFranchises,
+  },
+  Franchise: {
+    seasonStats: getSeasonStats,
   },
 };
 
