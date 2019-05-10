@@ -11,6 +11,15 @@ const franchisesQuery = gql`
       nodes {
         idFranchise
         teamFull
+        teamAbbr
+        seasonStats {
+          season
+          totalGames
+          totalTies
+          totalLosses
+          totalWins
+          winningPercentage
+        }
       }
     }
   }
@@ -24,6 +33,8 @@ const fetchAs = self => flow(function* fetch(resource: string) {
     } = yield self.api.query({ query: franchisesQuery });
 
     const { cursor, nodes } = franchises;
+
+    console.log(nodes);
 
     self.franchises = nodes;
     self.state = 'done';

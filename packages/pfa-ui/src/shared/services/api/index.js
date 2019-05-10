@@ -9,7 +9,7 @@ import { ApolloLink } from 'apollo-link';
  * Setting the hostname of our api gateway
  * @type {string|string}
  */
-const apiHost = process.env.API_HOST || 'localhost:4000';
+const apiHost = process.env.API_HOST || 'api.pfa.test';
 
 /**
  * Handles GraphQL errors. For now, spits out the error into the console.

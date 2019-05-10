@@ -3,17 +3,6 @@ import * as React from 'react';
 import OrdinalFrame from 'semiotic/lib/OrdinalFrame';
 
 const frameProps = {
-  data: [
-    { wins: 5, losses: 11, season: 2000 },
-    { wins: 7, losses: 11, season: 2001 },
-    { wins: 7, losses: 11, season: 2002 },
-    { wins: 9, losses: 11, season: 2003 },
-    { wins: 12, losses: 11, season: 2004 },
-    { wins: 11, losses: 11, season: 2005 },
-    { wins: 6, losses: 11, season: 2006 },
-    { wins: 5, losses: 11, season: 2007 },
-    { wins: 7, losses: 11, season: 2008 },
-  ],
   size: [700, 500],
   margin: {
     top: 60,
@@ -35,7 +24,7 @@ const frameProps = {
   },
   oPadding: 10,
   oAccessor: 'season',
-  rAccessor: 'wins',
+  rAccessor: 'totalWins',
   rExtent: [0, 20],
   style: { fill: '#ac58e5', opacity: 1, stroke: 'white' },
   connectorStyle: { stroke: '#E0488B', strokeWidth: 3 },
@@ -57,6 +46,6 @@ const frameProps = {
   oLabel: true,
 };
 
-export const Sample = () => <OrdinalFrame {...frameProps} />;
+export const Sample = ({ data }) => <OrdinalFrame {...frameProps} data={data} />;
 
 export default Sample;

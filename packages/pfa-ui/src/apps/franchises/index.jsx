@@ -59,7 +59,7 @@ const Franchises = ({ franchises }) => (
     {franchises.map(franchise => (
       <Col key={franchise.idFranchise} span={12}>
         <Card title={franchise.teamFull} className={card.base}>
-          <Sample />
+          <Sample data={franchise.seasonStats} />
         </Card>
       </Col>
     ))}
