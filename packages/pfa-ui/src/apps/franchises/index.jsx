@@ -4,6 +4,7 @@ import { observer, inject } from 'mobx-react';
 import {
   Row, Card, Radio, Icon, Menu,
 } from 'antd';
+import { Link } from 'react-router-dom';
 import { Table, BarChart, TrendSpark } from 'apps/widgets';
 import card from './card.less';
 
@@ -45,7 +46,7 @@ const totalsColumns = [
     title: 'Team',
     dataIndex: 'teamAbbr',
     key: 'team',
-    render: text => <a href="javascript:;">{text}</a>,
+    render: text => <Link to={`/teams/${text.toLowerCase()}`}>{text}</Link>,
   },
   {
     title: 'Games',
@@ -132,7 +133,7 @@ const Franchises = ({ franchises }) => {
 
   return (
     <React.Fragment>
-      <Row style={{ marginBottom: 10 }}>
+      <Row style={{ marginBottom: 20 }}>
         <FranchiseMenu />
       </Row>
       <Row>
