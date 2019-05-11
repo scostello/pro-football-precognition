@@ -2,9 +2,9 @@
 import * as React from 'react';
 import { observer, inject } from 'mobx-react';
 import {
-  Row, Col, Card, Radio, Icon,
+  Row, Card, Radio, Icon, Menu,
 } from 'antd';
-import { Table, BarChart } from 'apps/widgets';
+import { Table, BarChart, TrendSpark } from 'apps/widgets';
 import card from './card.less';
 
 const RadioButton = Radio.Button;
@@ -40,11 +40,17 @@ const TableChartGroup = ({ selected, handleChange }) => (
   </RadioGroup>
 );
 
-const columns = [
+const totalsColumns = [
   {
-    title: 'Season',
-    dataIndex: 'season',
-    key: 'season',
+    title: 'Team',
+    dataIndex: 'teamAbbr',
+    key: 'team',
+    render: text => <a href="javascript:;">{text}</a>,
+  },
+  {
+    title: 'Games',
+    dataIndex: 'totalGames',
+    key: 'games',
   },
   {
     title: 'Wins',
@@ -65,7 +71,17 @@ const columns = [
     title: 'Winning Percentage',
     dataIndex: 'winningPercentage',
     key: 'winning_percentage',
+    render: percentage => `${percentage.toFixed(2)} %`,
   },
+];
+
+const seasonsColumns = [
+  {
+    title: 'Season',
+    dataIndex: 'season',
+    key: 'season',
+  },
+  ...totalsColumns,
 ];
 
 const TeamCard = ({ franchise }) => {
@@ -78,7 +94,7 @@ const TeamCard = ({ franchise }) => {
       extra={<TableChartGroup selected={displayAs} handleChange={value => setDisplayAs(value)} />}
     >
       {displayAs === 'table' ? (
-        <Table size={'small'} columns={columns} dataSource={franchise.seasonStats} />
+        <Table size={'small'} columns={seasonsColumns} dataSource={franchise.seasonStats} />
       ) : (
         <BarChart data={franchise.seasonStats} />
       )}
@@ -86,15 +102,45 @@ const TeamCard = ({ franchise }) => {
   );
 };
 
-const Franchises = ({ franchises }) => (
-  <Row gutter={12}>
-    {franchises.map(franchise => (
-      <Col key={franchise.idFranchise} span={12}>
-        <TeamCard franchise={franchise} />
-      </Col>
-    ))}
-  </Row>
+const FranchiseMenu = () => (
+  <Menu selectedKeys={['totals']} mode={'horizontal'}>
+    <Menu.Item key={'totals'}>{'Totals'}</Menu.Item>
+  </Menu>
 );
+
+const Franchises = ({ franchises }) => {
+  const columns = [
+    ...totalsColumns,
+    {
+      title: 'Season Wins Trend',
+      dataIndex: 'trend',
+      key: 'trend',
+      render: (text, record) => (
+        <TrendSpark data={franchises.find(f => f.teamAbbr === record.teamAbbr).seasonStats} />
+      ),
+    },
+  ];
+
+  const franchiseTotals = franchises.map(franchise => ({
+    teamAbbr: franchise.teamAbbr,
+    totalGames: franchise.totalStats.totalGames,
+    totalWins: franchise.totalStats.totalWins,
+    totalLosses: franchise.totalStats.totalLosses,
+    totalTies: franchise.totalStats.totalTies,
+    winningPercentage: franchise.totalStats.winningPercentage,
+  }));
+
+  return (
+    <React.Fragment>
+      <Row style={{ marginBottom: 10 }}>
+        <FranchiseMenu />
+      </Row>
+      <Row>
+        <Table size={'small'} columns={columns} dataSource={franchiseTotals} pagination={false} />
+      </Row>
+    </React.Fragment>
+  );
+};
 
 const withFranchises = withResources('franchises');
 

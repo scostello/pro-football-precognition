@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
-import { GradientPinkBlue } from '@vx/gradient';
 import OrdinalFrame from 'semiotic/lib/OrdinalFrame';
+import { GradientPinkBlue } from '@vx/gradient';
 
 const frameProps = {
   size: [700, 500],

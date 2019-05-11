@@ -1,8 +1,7 @@
 // @flow
 import { types } from 'mobx-state-tree';
 
-export const SeasonStat = types.model('SeasonStat', {
-  season: types.number,
+const gameOutcomeTypes = {
   totalHomeGames: types.maybe(types.number),
   totalAwayGames: types.maybe(types.number),
   totalGames: types.maybe(types.number),
@@ -10,10 +9,17 @@ export const SeasonStat = types.model('SeasonStat', {
   totalLosses: types.maybe(types.number),
   totalTies: types.maybe(types.number),
   winningPercentage: types.maybe(types.number),
+};
+
+export const GameOutcomeStats = types.model('OutcomeStats', gameOutcomeTypes);
+
+export const SeasonStats = types.model('SeasonStat', {
+  ...gameOutcomeTypes,
+  season: types.number,
 });
 
 export const Franchise = types
-  .model({
+  .model('Franchise', {
     idFranchise: types.identifier,
     teamAbbr: '',
     teamFull: '',
@@ -22,7 +28,8 @@ export const Franchise = types
     stadiumName: '',
     activeFrom: types.optional(types.number, 2019),
     activeTo: types.optional(types.number, 2019),
-    seasonStats: types.array(SeasonStat),
+    totalStats: GameOutcomeStats,
+    seasonStats: types.array(SeasonStats),
   })
   .views(self => ({
     get winPerc() {

@@ -12,6 +12,13 @@ const franchisesQuery = gql`
         idFranchise
         teamFull
         teamAbbr
+        totalStats {
+          totalGames
+          totalTies
+          totalLosses
+          totalWins
+          winningPercentage
+        }
         seasonStats {
           season
           totalGames
