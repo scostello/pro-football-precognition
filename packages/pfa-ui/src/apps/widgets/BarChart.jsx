@@ -77,6 +77,6 @@ const frameProps = {
   oLabel: true,
 };
 
-export const Sample = ({ data }) => <OrdinalFrame {...frameProps} data={data} />;
+export const BarChart = ({ data }) => <OrdinalFrame {...frameProps} data={data} />;
 
-export default Sample;
+export default BarChart;

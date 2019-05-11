@@ -4,7 +4,7 @@ import { observer, inject } from 'mobx-react';
 import {
   Row, Col, Card, Radio, Icon,
 } from 'antd';
-import Sample from 'apps/widgets/Sample';
+import { Table, BarChart } from 'apps/widgets';
 import card from './card.less';
 
 const RadioButton = Radio.Button;
@@ -29,8 +29,8 @@ const withResources = resource => (WrappedComponent) => {
   return inject('store')(observer(Resource));
 };
 
-const TableChartGroup = () => (
-  <RadioGroup defaultValue={'table'}>
+const TableChartGroup = ({ selected, handleChange }) => (
+  <RadioGroup value={selected} onChange={e => handleChange(e.target.value)} defaultValue={'table'}>
     <RadioButton value={'table'}>
       <Icon type={'table'} />
     </RadioButton>
@@ -40,13 +40,57 @@ const TableChartGroup = () => (
   </RadioGroup>
 );
 
+const columns = [
+  {
+    title: 'Season',
+    dataIndex: 'season',
+    key: 'season',
+  },
+  {
+    title: 'Wins',
+    dataIndex: 'totalWins',
+    key: 'wins',
+  },
+  {
+    title: 'Losses',
+    dataIndex: 'totalLosses',
+    key: 'losses',
+  },
+  {
+    title: 'Ties',
+    dataIndex: 'totalTies',
+    key: 'ties',
+  },
+  {
+    title: 'Winning Percentage',
+    dataIndex: 'winningPercentage',
+    key: 'winning_percentage',
+  },
+];
+
+const TeamCard = ({ franchise }) => {
+  const [displayAs, setDisplayAs] = React.useState('table');
+
+  return (
+    <Card
+      title={franchise.teamFull}
+      className={card.base}
+      extra={<TableChartGroup selected={displayAs} handleChange={value => setDisplayAs(value)} />}
+    >
+      {displayAs === 'table' ? (
+        <Table size={'small'} columns={columns} dataSource={franchise.seasonStats} />
+      ) : (
+        <BarChart data={franchise.seasonStats} />
+      )}
+    </Card>
+  );
+};
+
 const Franchises = ({ franchises }) => (
   <Row gutter={12}>
     {franchises.map(franchise => (
       <Col key={franchise.idFranchise} span={12}>
-        <Card title={franchise.teamFull} className={card.base} extra={<TableChartGroup />}>
-          <Sample data={franchise.seasonStats} />
-        </Card>
+        <TeamCard franchise={franchise} />
       </Col>
     ))}
   </Row>
