@@ -69,7 +69,7 @@ const columns = [
 ];
 
 const TeamCard = ({ franchise }) => {
-  const [displayAs, setDisplayAs] = React.useState('table');
+  const [displayAs, setDisplayAs] = React.useState('chart');
 
   return (
     <Card
