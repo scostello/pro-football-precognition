@@ -2,38 +2,13 @@
 import * as React from 'react';
 import { observer, inject } from 'mobx-react';
 import {
-  Row, Col, Card, Table,
+  Row, Col, Card, Radio, Icon,
 } from 'antd';
 import Sample from 'apps/widgets/Sample';
 import card from './card.less';
 
-const columns = [
-  {
-    title: 'Games',
-    dataIndex: 'games',
-    key: 'games',
-  },
-  {
-    title: 'Wins',
-    dataIndex: 'wins',
-    key: 'wins',
-  },
-  {
-    title: 'Losses',
-    dataIndex: 'losses',
-    key: 'losses',
-  },
-  {
-    title: 'Ties',
-    dataIndex: 'ties',
-    key: 'ties',
-  },
-  {
-    title: 'Win %',
-    dataIndex: 'winPerc',
-    key: 'winPerc',
-  },
-];
+const RadioButton = Radio.Button;
+const RadioGroup = Radio.Group;
 
 const withResources = resource => (WrappedComponent) => {
   class Resource extends React.Component<{}> {
@@ -54,11 +29,22 @@ const withResources = resource => (WrappedComponent) => {
   return inject('store')(observer(Resource));
 };
 
+const TableChartGroup = () => (
+  <RadioGroup defaultValue={'table'}>
+    <RadioButton value={'table'}>
+      <Icon type={'table'} />
+    </RadioButton>
+    <RadioButton value={'chart'}>
+      <Icon type={'line-chart'} />
+    </RadioButton>
+  </RadioGroup>
+);
+
 const Franchises = ({ franchises }) => (
   <Row gutter={12}>
     {franchises.map(franchise => (
       <Col key={franchise.idFranchise} span={12}>
-        <Card title={franchise.teamFull} className={card.base}>
+        <Card title={franchise.teamFull} className={card.base} extra={<TableChartGroup />}>
           <Sample data={franchise.seasonStats} />
         </Card>
       </Col>

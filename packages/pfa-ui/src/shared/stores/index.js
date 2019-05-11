@@ -34,8 +34,6 @@ const fetchAs = self => flow(function* fetch(resource: string) {
 
     const { cursor, nodes } = franchises;
 
-    console.log(nodes);
-
     self.franchises = nodes;
     self.state = 'done';
   } catch (error) {

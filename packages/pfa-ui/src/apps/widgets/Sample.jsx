@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import { GradientPinkBlue } from '@vx/gradient';
 import OrdinalFrame from 'semiotic/lib/OrdinalFrame';
 
 const frameProps = {
@@ -16,7 +17,7 @@ const frameProps = {
       if (d.rIndex === 1) {
         return <circle r={6} fill={'#E0488B'} />;
       }
-      return <rect height={d.scaledValue} width={20} x={-10} fill={'#ac58e5'} />;
+      return <rect height={d.scaledValue} width={20} x={-10} fill={'url(#gradient)'} />;
     },
   },
   connectorType(e) {
@@ -27,6 +28,7 @@ const frameProps = {
   rAccessor: 'totalWins',
   rExtent: [0, 20],
   style: { fill: '#ac58e5', opacity: 1, stroke: 'white' },
+  additionalDefs: [<GradientPinkBlue key="gradient" id="gradient" />],
   connectorStyle: { stroke: '#E0488B', strokeWidth: 3 },
   title: <text>{'Wins per Season'}</text>,
   axes: [
@@ -41,6 +43,35 @@ const frameProps = {
       ),
     },
   ],
+  pieceHoverAnnotation: [
+    {
+      type: 'highlight',
+      style: {
+        stroke: 'white',
+        fill: 'none',
+        strokeWidth: 4,
+        strokeOpacity: 0.5,
+      },
+    },
+    {
+      type: 'frame-hover',
+    },
+  ],
+  tooltipContent: (d) => {
+    const content = [
+      <div style={{ color: '#ac58e5' }} key={'1'}>
+        Wins:
+        {' '}
+        {d.totalWins}
+      </div>,
+    ];
+
+    return (
+      <div style={{ fontWeight: 900 }} className={'tooltip-content'}>
+        {content}
+      </div>
+    );
+  },
   multiAxis: false,
   renderOrder: ['pieces', 'connectors'],
   oLabel: true,
