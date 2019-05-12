@@ -46,16 +46,30 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
-            - name: pfa-api-pkg
-              mountPath: "/apps/pfa-api"
+            - name: pfa-api-src
+              mountPath: "/apps/pfa-api/src"
+            - name: pfa-api-babel
+              mountPath: "/apps/pfa-api/.babelrc"
+            - name: pfa-api-package
+              mountPath: "/apps/pfa-api/package.json"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
-        - name: pfa-api-pkg
+        - name: pfa-api-src
           hostPath:
-            path: "{{ .Values.image.package_path }}"
+            path: "{{ .Values.image.package_path }}/src"
+            type: Directory
+        - name: pfa-api-babel
+          hostPath:
+            path: "{{ .Values.image.package_path }}/.babelrc"
+            type: File
+        - name: pfa-api-package
+          hostPath:
+            path: "{{ .Values.image.package_path }}/package.json"
+            type: File
+
     {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}

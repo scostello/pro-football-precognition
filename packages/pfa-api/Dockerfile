@@ -1,36 +1,21 @@
-FROM node:11.15.0-alpine
+FROM quay.io/sean.costello/nodejs-rdkafka:11.15.0-0.11.6@sha256:574123e82c1b59bb773ea0260ce74dadf03b91ac3d2b4591a7cbdb7716cfb5b2
 
 ENV APPS_DIR=/apps
 ENV APP_NAME=pfa-api
 ENV APP_PATH=${APPS_DIR}/${APP_NAME}
+ENV BUILD_LIBRDKAFKA=0
 
 WORKDIR ${APP_PATH}
-
-RUN apk --no-cache add \
-  bash \
-  g++ \
-  ca-certificates \
-  lz4-dev \
-  musl-dev \
-  cyrus-sasl-dev \
-  openssl-dev \
-  make \
-  python &&\
-  apk add --no-cache --virtual .build-deps \
-  gcc \
-  zlib-dev \
-  libc-dev \
-  bsd-compat-headers \
-  py-setuptools \
-  bash
 
 COPY package*.json ./
 
 COPY .babelrc ./
 COPY src/ src/
 
-RUN yarn install &&\
-    yarn run build
+RUN \
+  yarn install &&\
+  yarn run build &&\
+  apk del build-deps
 
 EXPOSE 3030 5858
 

@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: quay.io/sean.costello/pfa-api
-  tag: 0.2.0
+  tag: 0.3.0
   pullPolicy: Never
   command: exec yarn run watch
   env:
