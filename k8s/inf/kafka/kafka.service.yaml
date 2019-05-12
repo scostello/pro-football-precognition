@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka
+spec:
+  type: NodePort
+  ports:
+    - name: client
+      port: 9092
+      protocol: TCP
+      targetPort: client
+      nodePort: 30992
+  selector:
+    app.kubernetes.io/name: kafka
+    app.kubernetes.io/instance: pfa
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-cluster
+spec:
+  clusterIP: None
+  ports:
+    - name: client
+      port: 9092
+      protocol: TCP
+      targetPort: client
+  selector:
+    app.kubernetes.io/name: kafka
+    app.kubernetes.io/instance: pfa
