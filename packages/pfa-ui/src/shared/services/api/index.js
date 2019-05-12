@@ -2,8 +2,10 @@
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { createHttpLink } from 'apollo-link-http';
+import { WebSocketLink } from 'apollo-link-ws';
 import { onError } from 'apollo-link-error';
-import { ApolloLink } from 'apollo-link';
+import { split, ApolloLink } from 'apollo-link';
+import { getMainDefinition } from 'apollo-utilities';
 
 /**
  * Setting the hostname of our api gateway
@@ -29,8 +31,23 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
  */
 const httpLink = createHttpLink({ uri: `${window.location.protocol}//${apiHost}/graphql` });
 
+const wsLink = new WebSocketLink({
+  uri: `ws://${apiHost}/graphql`,
+  options: {
+    reconnect: true,
+  },
+});
+
+const isSubscription = ({ kind, operation }) => kind === 'OperationDefinition' && operation === 'subscription';
+
+const requestLink = split(
+  ({ query }) => isSubscription(getMainDefinition(query)),
+  wsLink,
+  httpLink,
+);
+
 export const createClient = () => new ApolloClient({
-  link: ApolloLink.from([errorLink, httpLink]),
+  link: ApolloLink.from([errorLink, requestLink]),
   cache: new InMemoryCache(),
 });
 

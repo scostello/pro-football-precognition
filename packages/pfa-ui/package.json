@@ -53,6 +53,8 @@
     "apollo-link": "^1.2.11",
     "apollo-link-error": "^1.1.10",
     "apollo-link-http": "^1.5.14",
+    "apollo-link-ws": "^1.0.17",
+    "apollo-utilities": "^1.2.1",
     "d3-shape": "^1.3.5",
     "graphql": "^14.2.1",
     "graphql-tag": "^2.10.1",
@@ -69,7 +71,8 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "rxjs": "^6.4.0",
-    "semiotic": "^1.19.7"
+    "semiotic": "^1.19.7",
+    "subscriptions-transport-ws": "^0.9.16"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",

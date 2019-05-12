@@ -32,6 +32,12 @@ const franchisesQuery = gql`
   }
 `;
 
+const playOccurredSubscription = gql`
+  subscription {
+    playOccurred
+  }
+`;
+
 const fetchAs = self => flow(function* fetch(resource: string) {
   self.state = 'pending';
   try {
@@ -63,6 +69,11 @@ export const createAppStore = () => {
     .actions(self => ({
       getFranchises: fetchAs(self),
       getPlayers: () => {},
+      afterCreate: () => {
+        const source$ = self.api.subscribe({ query: playOccurredSubscription });
+
+        source$.subscribe(play => console.log('Play occurred...', play));
+      },
     }));
 
   return root.create(
