@@ -4,17 +4,14 @@ kubectl config use-context minikube
 
 project_root=$(pwd)
 
+install_pull_secret() {
+  kubectl apply k8s/scripts/quay-pull-secret.yaml
+}
+
 install_tiller() {
-
-#  kubectl -n kube-system create sa tiller
-#  kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
-#  helm init --service-account tiller --wait
-
-  if [[ $(kubectl get sa --all-namespaces -o json | jq '.items[].metadata.name' | grep tiller | wc -l) == "0" ]]; then
-    kubectl -n kube-system create sa tiller
-    kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
-    helm init --service-account tiller --wait
-  fi
+  kubectl -n kube-system create sa tiller
+  kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+  helm init --service-account tiller --wait
 }
 
 install_pg() {
@@ -69,6 +66,7 @@ install_api() {
     k8s/charts/pfa-api
 }
 
+install_pull_secret
 install_tiller
 install_pg
 install_kong_ingress
