@@ -47,7 +47,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.8.2",
     "@vx/gradient": "^0.0.183",
-    "antd": "^3.17.0",
+    "antd": "^3.18.1",
     "apollo-cache-inmemory": "^1.5.1",
     "apollo-client": "^2.5.1",
     "apollo-link": "^1.2.11",

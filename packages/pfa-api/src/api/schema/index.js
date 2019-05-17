@@ -22,6 +22,10 @@ const rootSchema = gql`
     testSubscription: Boolean
   }
   
+  type Mutation {
+    _: Boolean
+  }
+  
   type Subscription {
     playOccurred: JSON
   }
@@ -38,13 +42,16 @@ const rootResolvers = {
     testSubscription: () => {
       setInterval(() => {
         pubsub.publish({
-          channel: PLAY_OCCURRED,
-          playOccurred: {},
+          index: 1,
+          value: 2,
           // channelId: message.channelId
         });
       }, 2500);
       return true;
     },
+  },
+  Mutation: {
+    _: () => true,
   },
   Subscription: {
     playOccurred: {

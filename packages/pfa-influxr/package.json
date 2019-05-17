@@ -6,6 +6,7 @@
   "scripts": {
     "build": "babel-node src/index.js build",
     "provision": "babel-node src/index.js provision",
+    "scrape": "babel-node src/index.js scrape",
     "job:geolocate": "babel-node src/jobs/geolocate.js",
     "test": "nyc mocha $NODE_DEBUG_OPTION --require babel-core/register test/**/*.spec.js --recursive --exit"
   },
@@ -13,13 +14,16 @@
   "license": "ISC",
   "dependencies": {
     "@google/maps": "^0.5.5",
+    "cheerio": "^1.0.0-rc.3",
     "commander": "^2.20.0",
     "dotenv": "^8.0.0",
     "glob": "^7.1.4",
-    "massive": "^5.8.0",
+    "massive": "^5.9.0",
     "mkdirp": "^0.5.1",
+    "puppeteer": "^1.16.0",
     "rxjs": "^6.5.2",
-    "sanctuary": "^2.0.0"
+    "sanctuary": "^2.0.0",
+    "xml-js": "^1.6.11"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
