@@ -129,8 +129,6 @@ const Franchises = ({ store }) => {
     winningPercentage: franchise.totalStats.winningPercentage,
   }));
 
-  console.log('In Franchises');
-
   return <Table size={'small'} columns={columns} dataSource={franchiseTotals} pagination={false} />;
 };
 

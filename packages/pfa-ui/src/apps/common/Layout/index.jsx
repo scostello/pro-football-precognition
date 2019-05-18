@@ -1,13 +1,12 @@
 // @flow
 import * as React from 'react';
-import { Layout as AntdLayout, Menu, Icon } from 'antd';
-import {
-  withRouter, Link, Route, Switch, Redirect,
-} from 'react-router-dom';
+import { Layout as AntdLayout } from 'antd';
+import { withRouter, Route, Switch } from 'react-router-dom';
 import Header from './Header';
+import SideNav from './SideNav';
 import layout from './layout.less';
 
-const { Content, Sider } = AntdLayout;
+const { Content } = AntdLayout;
 
 export const Layout = ({ menuItems, location }) => {
   const [collapsed, onCollapsed] = React.useState(false);
@@ -16,28 +15,11 @@ export const Layout = ({ menuItems, location }) => {
 
   return (
     <AntdLayout style={{ minHeight: '100vh' }}>
-      <Sider
-        collapsible
+      <SideNav
         collapsed={collapsed}
-        onCollapse={isCollapsed => onCollapsed(isCollapsed)}
-        className={layout.sider}
-      >
-        <div className={layout.logo}>LOGO</div>
-        <Menu
-          className={layout.siderMenu}
-          defaultSelectedKeys={selectedMenuItems.map(item => item.key)}
-          mode={'inline'}
-        >
-          {menuItems.map(item => (
-            <Menu.Item key={item.key} className={layout.siderMenuitem}>
-              <Link to={item.href}>
-                <Icon type={'pie-chart'} />
-                <span>{item.label}</span>
-              </Link>
-            </Menu.Item>
-          ))}
-        </Menu>
-      </Sider>
+        handleCollapse={isCollapsed => onCollapsed(isCollapsed)}
+        menuItems={menuItems}
+      />
       <AntdLayout className={layout.mainContentWrapper}>
         <Header className={layout.header} activeMenuItem={selectedMenuItems[0]} />
         <Content style={{ margin: '16px' }}>
