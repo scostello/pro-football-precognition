@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { Layout as AntdLayout, Menu, Icon } from 'antd';
 import {
-  withRouter, Link, Route, Switch,
+  withRouter, Link, Route, Switch, Redirect,
 } from 'react-router-dom';
 import Header from './Header';
 import layout from './layout.less';
@@ -43,7 +43,7 @@ export const Layout = ({ menuItems, location }) => {
         <Content style={{ margin: '16px' }}>
           <Switch>
             {menuItems.map(item => (
-              <Route key={item.key} path={item.href} component={item.content} />
+              <Route exact key={item.key} path={item.href} component={item.content} />
             ))}
           </Switch>
         </Content>

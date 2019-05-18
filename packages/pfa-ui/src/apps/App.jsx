@@ -13,6 +13,12 @@ const store = createAppStore();
 
 const menuItems = [
   {
+    key: 'dashboard',
+    label: 'Dashboard',
+    href: '/',
+    content: () => <div>This is the dashboard</div>,
+  },
+  {
     key: 'teams',
     label: 'Teams',
     href: '/teams',

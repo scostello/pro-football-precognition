@@ -15,15 +15,13 @@ const withResources = resource => (WrappedComponent) => {
   class Resource extends React.Component<{}> {
     componentDidMount(): void {
       const { store } = this.props;
-      store.getFranchises();
+      store.fetchResources(resource);
     }
 
     render() {
-      const {
-        store: { state, franchises },
-      } = this.props;
+      const { store } = this.props;
 
-      return <WrappedComponent loadingState={state} franchises={franchises} />;
+      return <WrappedComponent store={store} />;
     }
   }
 
@@ -109,7 +107,7 @@ const FranchiseMenu = () => (
   </Menu>
 );
 
-const Franchises = ({ franchises }) => {
+const Franchises = ({ store }) => {
   const columns = [
     ...totalsColumns,
     {
@@ -117,12 +115,12 @@ const Franchises = ({ franchises }) => {
       dataIndex: 'trend',
       key: 'trend',
       render: (text, record) => (
-        <TrendSpark data={franchises.find(f => f.teamAbbr === record.teamAbbr).seasonStats} />
+        <TrendSpark data={store.franchises.find(f => f.teamAbbr === record.teamAbbr).seasonStats} />
       ),
     },
   ];
 
-  const franchiseTotals = franchises.map(franchise => ({
+  const franchiseTotals = store.franchises.map(franchise => ({
     teamAbbr: franchise.teamAbbr,
     totalGames: franchise.totalStats.totalGames,
     totalWins: franchise.totalStats.totalWins,
@@ -131,18 +129,26 @@ const Franchises = ({ franchises }) => {
     winningPercentage: franchise.totalStats.winningPercentage,
   }));
 
+  console.log('In Franchises');
+
+  return <Table size={'small'} columns={columns} dataSource={franchiseTotals} pagination={false} />;
+};
+
+const FranchiseList = withResources('franchises')(observer(Franchises));
+
+const FranchiseLayout = () => {
+  console.log('In FranchiseLayout');
+
   return (
     <React.Fragment>
       <Row style={{ marginBottom: 20 }}>
         <FranchiseMenu />
       </Row>
       <Row>
-        <Table size={'small'} columns={columns} dataSource={franchiseTotals} pagination={false} />
+        <FranchiseList />
       </Row>
     </React.Fragment>
   );
 };
 
-const withFranchises = withResources('franchises');
-
-export default withFranchises(Franchises);
+export default FranchiseLayout;

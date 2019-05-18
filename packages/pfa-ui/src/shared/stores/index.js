@@ -6,7 +6,7 @@ import { Franchise } from './franchise';
 
 const franchisesQuery = gql`
   query fetchFranchises {
-    franchises {
+    fetchedResource: franchises {
       cursor
       nodes {
         idFranchise
@@ -32,6 +32,10 @@ const franchisesQuery = gql`
   }
 `;
 
+const QUERY_MAP = {
+  franchises: franchisesQuery,
+};
+
 const playOccurredSubscription = gql`
   subscription {
     playOccurred
@@ -42,12 +46,12 @@ const fetchAs = self => flow(function* fetch(resource: string) {
   self.state = 'pending';
   try {
     const {
-      data: { franchises },
-    } = yield self.api.query({ query: franchisesQuery });
+      data: { fetchedResource },
+    } = yield self.api.query({ query: QUERY_MAP[resource], fetchPolicy: 'cache-first' });
 
-    const { cursor, nodes } = franchises;
+    const { cursor, nodes } = fetchedResource;
 
-    self.franchises = nodes;
+    self.setResource(resource, nodes);
     self.state = 'done';
   } catch (error) {
     console.log('in error', error);
@@ -59,7 +63,7 @@ export const createAppStore = () => {
   const root = types
     .model('RootStore', {
       franchises: types.array(Franchise),
-      state: '',
+      state: 'idle',
     })
     .views(self => ({
       get api() {
@@ -67,7 +71,10 @@ export const createAppStore = () => {
       },
     }))
     .actions(self => ({
-      getFranchises: fetchAs(self),
+      fetchResources: fetchAs(self),
+      setResource: (resource, value) => {
+        self[resource] = value;
+      },
       getPlayers: () => {},
       afterCreate: () => {
         const source$ = self.api.subscribe({ query: playOccurredSubscription });
