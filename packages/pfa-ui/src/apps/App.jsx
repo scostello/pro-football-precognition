@@ -6,6 +6,7 @@ import { Provider as MobXProvider } from 'mobx-react';
 import { createBrowserHistory } from 'history';
 import { createAppStore } from 'shared/stores';
 import Layout from './common/Layout';
+import Dashboard from './dashboard';
 import Franchises from './franchises';
 
 const history = createBrowserHistory();
@@ -16,7 +17,7 @@ const menuItems = [
     key: 'dashboard',
     label: 'Dashboard',
     href: '/',
-    content: () => <div>This is the dashboard</div>,
+    content: Dashboard,
   },
   {
     key: 'teams',

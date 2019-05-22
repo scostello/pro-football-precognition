@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS reporting.plays (
-    id_play                 bigint PRIMARY KEY NOT NULL DEFAULT public.id_generator(),
+  id_play                 bigint PRIMARY KEY NOT NULL DEFAULT public.id_generator(),
 	id_game                 bigint,
 	aa_play_id              int,
 	aa_game_id              int,

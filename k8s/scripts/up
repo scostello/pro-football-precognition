@@ -32,6 +32,7 @@ install_pg() {
     --set image.tag=${pg_tag} \
     --set postgresqlUsername=${pg_user} \
     --set postgresqlPassword=${pg_password} \
+    --set persistence.size=15Gi \
     stable/postgresql
 
   kubectl apply -f k8s/inf/postgres.service.yaml

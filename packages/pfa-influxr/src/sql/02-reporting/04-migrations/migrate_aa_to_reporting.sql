@@ -565,3 +565,51 @@ SELECT COUNT(0) FROM reporting.two_point_conversions;
 
 -- 1442
 CALL reporting.migrate_conversions();
+
+CREATE OR REPLACE PROCEDURE reporting.migrate_charts()
+AS $$
+BEGIN
+  TRUNCATE reporting.charts;
+
+  INSERT INTO reporting.charts (id_game, id_play, play_text, team_on_offense, team_on_defense, play_type, quarterback, pass_target, quarter, line_of_scrimmage, down, yards_to_go, yards_from_own_goal, field_zone, yardage, successful_play, first_down, shotgun, no_huddle, completion, interception, defenders_in_box, available_targets, pass_rushers, stunt_pass_rushers, total_blitzers, db_blitzers, time_to_sack, play_action_pass, sideline_pass, highlight_pass, out_of_pocket_pass, shovel_pass, screen_pass, quarterback_pressured, quarterback_hit, quarterback_hurried, throw_motion_hindered, true_air_yards, depth_of_target, depth_of_target_rank, coverage_of_target, contested_ball, created_reception, yards_after_catch, dropped_pass, thrown_away, batted_ball, interception_worthy, players_in_backfield, personnel_rb, personnel_te)
+  SELECT
+  	rep_plays.id_game		AS id_game,
+    rep_plays.id_play       AS id_play,
+	aa_charts.play_text,
+	aa_charts.team_on_offense,
+	aa_charts.team_on_defense,
+	aa_charts.play_type,
+    rep_qbs.id_player   	AS quarterback,
+    rep_target.id_player 	AS pass_target,
+    aa_charts.quarter, aa_charts.line_of_scrimmage, aa_charts.down, aa_charts.yards_to_go, aa_charts.yards_from_own_goal, aa_charts.field_zone, aa_charts.yardage, aa_charts.successful_play, aa_charts.first_down, aa_charts.shotgun, aa_charts.no_huddle, aa_charts.completion, aa_charts.interception, aa_charts.defenders_in_box, aa_charts.available_targets, aa_charts.pass_rushers, aa_charts.stunt_pass_rushers, aa_charts.total_blitzers, aa_charts.db_blitzers, aa_charts.time_to_sack, aa_charts.play_action_pass, aa_charts.sideline_pass, aa_charts.highlight_pass, aa_charts.out_of_pocket_pass, aa_charts.shovel_pass, aa_charts.screen_pass, aa_charts.quarterback_pressured, aa_charts.quarterback_hit, aa_charts.quarterback_hurried, aa_charts.throw_motion_hindered, aa_charts.true_air_yards, aa_charts.depth_of_target, aa_charts.depth_of_target_rank, aa_charts.coverage_of_target, aa_charts.contested_ball, aa_charts.created_reception, aa_charts.yards_after_catch, aa_charts.dropped_pass, aa_charts.thrown_away, aa_charts.batted_ball, aa_charts.interception_worthy, aa_charts.players_in_backfield, aa_charts.personnel_rb, aa_charts.personnel_te
+  FROM
+    armchair_analysis.charts AS aa_charts
+    INNER JOIN reporting.plays AS rep_plays ON aa_charts.play_id = rep_plays.aa_play_id
+    INNER JOIN reporting.players AS rep_qbs ON aa_charts.quarterback = rep_qbs.aa_player_id
+    LEFT JOIN reporting.players AS rep_target ON aa_charts.pass_target = rep_target.aa_player_id;
+
+END;
+$$ LANGUAGE plpgsql;
+
+-- 20,618
+CALL reporting.migrate_charts();
+
+CREATE OR REPLACE PROCEDURE reporting.migrate_college()
+AS $$
+BEGIN
+  TRUNCATE reporting.college;
+
+  INSERT INTO reporting.college (ncaa_id, player, class, college, position, games_played, passing_completions, passing_attempts, passing_yardage, passing_touchdowns, interceptions_by_quarterback, passer_rating, rushing_attempts, rushing_yardage, rushing_touchdowns, receptions, receiving_touchdowns, receiving_yardage, solo_tackles, combined_tackles, tackles_for_loss, sacks, interceptions_by_defender, interception_return_yardage, interception_return_touchdowns, fumbles_recovered, fumble_return_yardage, fumble_return_touchdowns, fumbles_forced, point_after_attempts, point_after_made, field_goal_attempts, field_goal_made, kicker_points, punts, punt_yardage)
+  SELECT
+  	aa_college.ncaa_id,
+    rep_players.id_player       AS player,
+	aa_college.class, aa_college.college, aa_college.position, aa_college.games_played, aa_college.passing_completions, aa_college.passing_attempts, aa_college.passing_yardage, aa_college.passing_touchdowns, aa_college.interceptions_by_quarterback, aa_college.passer_rating, aa_college.rushing_attempts, aa_college.rushing_yardage, aa_college.rushing_touchdowns, aa_college.receptions, aa_college.receiving_touchdowns, aa_college.receiving_yardage, aa_college.solo_tackles, aa_college.combined_tackles, aa_college.tackles_for_loss, aa_college.sacks, aa_college.interceptions_by_defender, aa_college.interception_return_yardage, aa_college.interception_return_touchdowns, aa_college.fumbles_recovered, aa_college.fumble_return_yardage, aa_college.fumble_return_touchdowns, aa_college.fumbles_forced, aa_college.point_after_attempts, aa_college.point_after_made, aa_college.field_goal_attempts, aa_college.field_goal_made, aa_college.kicker_points, aa_college.punts, aa_college.punt_yardage
+  FROM
+    armchair_analysis.college AS aa_college
+    LEFT JOIN reporting.players AS rep_players ON aa_college.player = rep_players.aa_player_id;
+
+END;
+$$ LANGUAGE plpgsql;
+
+-- 28,739
+CALL reporting.migrate_college();
