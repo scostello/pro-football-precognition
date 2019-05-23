@@ -613,3 +613,26 @@ $$ LANGUAGE plpgsql;
 
 -- 28,739
 CALL reporting.migrate_college();
+
+CREATE OR REPLACE PROCEDURE reporting.migrate_twitter()
+AS $$
+BEGIN
+  TRUNCATE reporting.twitter;
+
+  INSERT INTO reporting.twitter (tweet_id, twitter_handle, first_name, last_name, player, created_at, tweet_text, source, times_favorited, times_retweeted)
+  SELECT
+    aa_twitter.tweet_id,
+	aa_twitter.twitter_handle,
+	aa_twitter.first_name,
+	aa_twitter.last_name,
+	rep_players.id_player,
+	aa_twitter.created_at::date, aa_twitter.tweet_text, aa_twitter.source, aa_twitter.times_favorited, aa_twitter.times_retweeted
+  FROM
+    armchair_analysis.twitter AS aa_twitter
+	LEFT JOIN reporting.players AS rep_players ON aa_twitter.player = rep_players.aa_player_id;
+
+END;
+$$ LANGUAGE plpgsql;
+
+-- 727,562
+CALL reporting.migrate_twitter();
