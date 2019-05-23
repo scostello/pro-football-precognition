@@ -277,6 +277,31 @@ $$ LANGUAGE plpgsql;
 -- 105456
 CALL reporting.migrate_offense();
 
+CREATE OR REPLACE PROCEDURE reporting.migrate_passes()
+AS $$
+BEGIN
+  TRUNCATE reporting.passes;
+
+  INSERT INTO reporting.passes (id_play, passer, target, defender, location, yards, completed, successful_play, spiked_ball)
+  SELECT
+    rep_plays.id_play    	AS id_play,
+    rep_passer.id_player 	AS	passer,
+	rep_target.id_player 	AS	target,
+	rep_defender.id_player	AS	defender,
+	location, yards, completed, successful_play, spiked_ball
+  FROM
+    armchair_analysis.passes AS aa_passes
+	INNER JOIN reporting.plays AS rep_plays ON aa_passes.play_id = rep_plays.aa_play_id
+    LEFT JOIN reporting.players AS rep_passer ON aa_passes.passer = rep_passer.aa_player_id
+    LEFT JOIN reporting.players AS rep_target ON aa_passes.target = rep_target.aa_player_id
+	LEFT JOIN reporting.players AS rep_defender ON aa_passes.defender = rep_defender.aa_player_id;
+
+END;
+$$ LANGUAGE plpgsql;
+
+-- 341,122
+CALL reporting.migrate_passes();
+
 CREATE OR REPLACE PROCEDURE reporting.migrate_penalties()
 AS $$
 BEGIN
