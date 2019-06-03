@@ -81,7 +81,7 @@ const buildQueryOpts = ({ cursor, first = 50, orderBy }) => {
     order: [
       R.ifElse(
         R.isNil,
-        () => orderField,
+        R.always(orderField),
         () => R.assoc('last', cursor, orderField),
       )(cursor),
     ],
