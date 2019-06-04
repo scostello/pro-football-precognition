@@ -8,6 +8,15 @@ import * as RxOp from 'rxjs/operators';
 import massive from 'massive';
 import schema from './schema';
 
+const mapServer = ([_db, _app, _httpServerFxty, _gqlServerFxty]) => {
+  _app.use('/healthz', (req, res) => res.sendStatus(200));
+  const gqlServer = _gqlServerFxty({ client: _db });
+  gqlServer.applyMiddleware({ app: _app });
+  const httpServer = _httpServerFxty(_app);
+  gqlServer.installSubscriptionHandlers(httpServer);
+  return Rx.of(httpServer);
+};
+
 export default () => {
   const db$ = Rx.from(massive({
     host: process.env.PG_HOST || 'localhost',
@@ -22,14 +31,5 @@ export default () => {
   const gqlServerFxty$ = Rx.of(context => new ApolloServer({ schema, context }));
 
   return Rx.forkJoin([db$, app$, httpServerFxty$, gqlServerFxty$])
-    .pipe(
-      RxOp.mergeMap(([_db, _app, _httpServerFxty, _gqlServerFxty]) => {
-        _app.use('/healthz', (req, res) => res.sendStatus(200));
-        const gqlServer = _gqlServerFxty({ client: _db });
-        gqlServer.applyMiddleware({ app: _app });
-        const httpServer = _httpServerFxty(_app);
-        gqlServer.installSubscriptionHandlers(httpServer);
-        return Rx.of(httpServer);
-      }),
-    );
+    .pipe(RxOp.mergeMap(mapServer));
 };

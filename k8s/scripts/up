@@ -69,7 +69,8 @@ install_api() {
     helm del --purge pfa-api
   fi
 
-  helm install --name pfa-api \
+  helm install \
+    --name pfa-api \
     --set image.package_path="${project_root}/packages/pfa-api" \
     k8s/charts/pfa-api
 }

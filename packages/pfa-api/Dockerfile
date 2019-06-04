@@ -1,4 +1,4 @@
-FROM quay.io/sean.costello/nodejs-rdkafka:11.15.0-0.11.6@sha256:574123e82c1b59bb773ea0260ce74dadf03b91ac3d2b4591a7cbdb7716cfb5b2
+FROM quay.io/sean.costello/nodejs-rdkafka:12.3.1-1.0.1@sha256:a93b5e065499dd2bdc409fe24747046e1040477cc5c917dc973fb224a5ef15db
 
 ENV APPS_DIR=/apps
 ENV APP_NAME=pfa-api
@@ -8,6 +8,7 @@ ENV BUILD_LIBRDKAFKA=0
 WORKDIR ${APP_PATH}
 
 COPY package*.json ./
+COPY yarn.lock ./
 
 COPY .babelrc ./
 COPY src/ src/
