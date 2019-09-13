@@ -13,11 +13,11 @@
   "author": "Sean Costello <me@seancostello.io>",
   "license": "ISC",
   "dependencies": {
-    "@google/maps": "^0.5.5",
-    "commander": "^2.20.0",
+    "@google/maps": "^1.0.0",
+    "commander": "^3.0.1",
     "dotenv": "^8.0.0",
     "glob": "^7.1.4",
-    "massive": "^5.11.0",
+    "massive": "^6.0.0",
     "mkdirp": "^0.5.1",
     "rxjs": "^6.5.2",
     "sanctuary": "^2.0.0",
@@ -39,6 +39,6 @@
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
     "nyc": "^14.1.1",
-    "rimraf": "^2.6.3"
+    "rimraf": "^3.0.0"
   }
 }
