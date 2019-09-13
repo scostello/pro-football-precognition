@@ -37,10 +37,10 @@
     "graphql-type-json": "^0.3.0",
     "lodash.merge": "^4.6.1",
     "node-rdkafka": "https://github.com/lrecknagel/node-rdkafka#refs/heads/node12Support",
-    "massive": "^5.11.0",
+    "massive": "^6.0.0",
     "npm-watch": "^0.6.0",
     "ramda": "^0.26.1",
-    "ramda-extension": "^0.7.2",
+    "ramda-extension": "^0.10.0",
     "rxjs": "^6.5.2"
   },
   "devDependencies": {
@@ -60,6 +60,6 @@
     "flow-copy-source": "^2.0.6",
     "mocha": "^6.1.4",
     "nyc": "^14.1.1",
-    "rimraf": "^2.6.3"
+    "rimraf": "^3.0.0"
   }
 }
