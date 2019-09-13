@@ -1,0 +1,12 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "package.json",
+        "packages/pfa-api/package.json",
+        "packages/pfa-influxr/package.json",
+        "packages/pfa-ui/package.json"
+      ]
+    }
+  }
+}
